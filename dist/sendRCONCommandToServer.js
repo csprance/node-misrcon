@@ -1,15 +1,23 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sendRCONCommandToServer = sendRCONCommandToServer;
 /**
  * Name: sendRCONCommandToServer
  * Created by chris on 4/26/2017.
  * Description: contains tools to send and parse responses from the miscreated game servers RCON
  */
 
-const axios = require('axios');
-const Promise = require('bluebird');
-const {parseString}  = require('xml2js');
-const md5 = require('md5');
-const http = require('http');
+var axios = require('axios');
+var Promise = require('bluebird');
 
+var _require = require('xml2js'),
+    parseString = _require.parseString;
+
+var md5 = require('md5');
+var http = require('http');
 
 // // RCON Steps
 // --- 1 ---
@@ -28,37 +36,35 @@ const http = require('http');
  *                           {ip:[ip], port:[port], password:[password], command: [command]}
  * @returns{promise} response      returns a promise that resolves to a String
  */
-export function sendRCONCommandToServer(options) {
+function sendRCONCommandToServer(options) {
   return new Promise(function (resolve, reject) {
 
     // setup
-    const serverUrl = `http://${options.ip}:${options.port}/rpc2`;
-    const axiosConfig = {
-      headers: {'Content-Type': 'text/xml'},
-      httpAgent: new http.Agent({keepAlive: true}),
+    var serverUrl = 'http://' + options.ip + ':' + options.port + '/rpc2';
+    var axiosConfig = {
+      headers: { 'Content-Type': 'text/xml' },
+      httpAgent: new http.Agent({ keepAlive: true })
     };
 
     /** --- 1 --- */
-      // Request: challenge
-    const challengeString = createChallengeString();
-    axios.post(serverUrl, challengeString, axiosConfig).then(res => {
+    // Request: challenge
+    var challengeString = createChallengeString();
+    axios.post(serverUrl, challengeString, axiosConfig).then(function (res) {
       // Response: uptime
-      let upTime = getUpTimeFromChallengeResponse(res.data);
-      let challengeResponseRequest = createChallengeResponseString(upTime, options.password);
-
+      var upTime = getUpTimeFromChallengeResponse(res.data);
+      var challengeResponseRequest = createChallengeResponseString(upTime, options.password);
 
       /** --- 2 --- */
       // Request: md5(uptime:password)
       return axios.post(serverUrl, challengeResponseRequest, axiosConfig);
-    }).then(res => {
+    }).then(function (res) {
       // Response: AuthResponse
       parseAuthResponse(res.data, reject);
 
-
       /** --- 3 --- */
-        // Request: CommandString
-      let commandString = createCommandString(options.command);
-      axios.post(serverUrl, commandString, axiosConfig).then(rconResult => {
+      // Request: CommandString
+      var commandString = createCommandString(options.command);
+      axios.post(serverUrl, commandString, axiosConfig).then(function (rconResult) {
         // Response: rconResult
         resolve(parseCommandResponse(rconResult.data));
       });
@@ -66,21 +72,20 @@ export function sendRCONCommandToServer(options) {
   });
 }
 
-
 function createChallengeString() {
   console.log('createChallengeString');
-  return `<methodCall><methodName>challenge</methodName><params></params></methodCall>`;
+  return '<methodCall><methodName>challenge</methodName><params></params></methodCall>';
 }
 
 function createChallengeResponseString(upTime, password) {
   // by doing md5(uptime:password)
   console.log('createChallengeResponseString');
-  return `<methodCall><methodName>authenticate</methodName><params><param><value><string>${md5(`${upTime}:${password}`)}</string></value></param></params></methodCall>`;
+  return '<methodCall><methodName>authenticate</methodName><params><param><value><string>' + md5(upTime + ':' + password) + '</string></value></param></params></methodCall>';
 }
 
 function createCommandString(command) {
   console.log('createCommandString');
-  return `<methodCall><methodName>${command}</methodName><params></params></methodCall>`;
+  return '<methodCall><methodName>' + command + '</methodName><params></params></methodCall>';
 }
 
 function getUpTimeFromChallengeResponse(str) {
@@ -88,8 +93,8 @@ function getUpTimeFromChallengeResponse(str) {
   // <methodResponse><params><param><value><string>31268616.000000</string></value></param></params></methodResponse>
 
   //get the uptime by parsing the xml
-  let uptime = '';
-  parseString(str, (err, result) => {
+  var uptime = '';
+  parseString(str, function (err, result) {
     uptime = result.methodResponse.params[0].param[0].value[0].string[0];
   });
   return uptime;
@@ -98,8 +103,8 @@ function getUpTimeFromChallengeResponse(str) {
 function parseCommandResponse(str) {
   // server response looks like
   // <methodResponse><params><param><value><string>{server response}</string></value></param></params></methodResponse>
-  let res = '';
-  parseString(str, (err, result) => {
+  var res = '';
+  parseString(str, function (err, result) {
     // parse the response
     res = result.methodResponse.params[0].param[0].value[0].string[0];
   });
@@ -112,8 +117,8 @@ function parseAuthResponse(data, reject) {
 
   // sometimes auth passes after a few tries it just keeps the connection open
   // Handle auth failed here
-  let authResults = '';
-  parseString(data, (err, result) => {
+  var authResults = '';
+  parseString(data, function (err, result) {
     authResults = result.methodResponse.params[0].param[0].value[0].string[0];
     //console.log('authResults: ', authResults);
     // if (authResults !== 'authorized') {

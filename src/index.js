@@ -1,6 +1,11 @@
-module.exports = {
-  parseBanListResponseToJs: require('./parseBanListResponseToJs'),
-  parseStatusResponseToJs: require('./parseStatusResponseToJs'),
-  parseWhitelistResponseToJs: require('./parseWhitelistResponseToJs'),
-  sendRCONCommandToServer: require('./sendRCONCommandToServer')
-};
+import {parseBanListResponseToJs} from './parseBanListResponseToJs'
+import {parseStatusResponseToJs} from './parseStatusResponseToJs'
+import {parseWhitelistResponseToJs} from './parseWhitelistResponseToJs'
+import {sendRCONCommandToServer} from './sendRCONCommandToServer'
+
+export default {
+  parseBanListResponseToJs,
+  parseStatusResponseToJs,
+  parseWhitelistResponseToJs,
+  sendRCONCommandToServer,
+}

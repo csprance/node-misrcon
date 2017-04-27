@@ -2,8 +2,10 @@
 
 /* global require */
 
-var Developer = require('./dist/developer.js').default;
+let misrcon = require('./dist').default;
+let {dev} = require('./secrets');
 
-var developer = new Developer('Alex', '??');
-
-developer.sayWhoAmI();
+misrcon.sendRCONCommandToServer({dev}).then(function (res) {
+  // Do something with the response here
+  console.log(res);
+});

@@ -4,15 +4,17 @@
  * Description:
  */
 
-function parseBanListResponseToJs(res) {
+export function parseWhitelistResponseToJs(res) {
   return res
     .replace('-----------------------------------------', '')
     .replace('-----------------------------------------', '')
     .replace(/(\r\n|\n|\r)/gm, ' ')
-    .replace('Banned players : ', '')
+    .replace('Whitelisted players : ', '')
     .split(' ')
     .filter((x) => x !== 'SteamID:')
+    .filter((x) => x !== '0')
     .filter((x) => x !== '');
 }
 
-module.exports = parseBanListResponseToJs;
+
+

@@ -11,6 +11,8 @@
     }
   ],
   "scripts": {
+    "watch:source": "rimraf dist/ && babel src/ --watch --out-dir dist/",
+    "watch:tests": "rimraf test-dist/ && babel test/ --watch --out-dir test-dist/",
     "lint": "eslint src test",
     "build:source": "rimraf dist/ && babel src/ --out-dir dist/",
     "build:tests": "rimraf test-dist/ && babel test/ --out-dir test-dist/",
@@ -33,6 +35,7 @@
     "babel-core": "6.16.0",
     "babel-eslint": "7.0.0",
     "babel-preset-es2015": "6.16.0",
+    "babel-preset-stage-0": "6.24.1",
     "chai": "3.5.0",
     "eslint": "3.6.1",
     "eslint-config-airbnb": "12.0.0",
@@ -58,7 +61,6 @@
   "dependencies": {
     "axios": "^0.16.1",
     "bluebird": "^3.5.0",
-    "http": "0.0.0",
     "md5": "^2.2.1",
     "xml2js": "^0.4.17"
   }

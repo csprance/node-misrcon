@@ -1,25 +1,18 @@
 /* global it, describe, before, after */
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 
-import { expect } from 'chai';
-import Developer from '../dist/developer';
+import {expect} from 'chai';
+import misrcon from '../dist';
+import {us75} from '../secrets';
 
-describe('developer tests', () => {
-  let developer;
+describe('sendRCONCommandToServer Tests', () => {
 
-  before(() => developer = new Developer('Alex', '99'));
+  it('us75 status', () => {
+    misrcon.sendRCONCommandToServer({...us75, command: 'status'}).then((res) => {
+      console.log(res);
 
-  after(() => developer = undefined);
-
-  it('getName', () => {
-    expect(developer.getName()).to.equal('Alex');
+    });
   });
 
-  it('getAge', () => {
-    expect(developer.getAge()).to.equal('99');
-  });
 
-  it('getWhoAmI', () => {
-    expect(developer.getWhoAmI()).to.equal('Alex JavaScript Developer');
-  });
 });
