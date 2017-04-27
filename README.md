@@ -14,15 +14,21 @@
 * send RCON commands to miscreated game servers via nodejs
 
 ## Getting Started
+* `npm i -S node-misrcon`
+* import the module
+* send the command and creds and then parse the promise callback which will resolve to a string
+* some utility functions to parse the various commands also exist but are wip and may break each update
 
-```
-import {sendRCONCommandToServer} from 'node-misrcon'
+```js
+const misrcon = require('node-misrcon').default;
 
-let options = {port:'64158',password:'password',ip:'192.168.1.1', command: 'status'};
+let options = {port:"80800",password:"passwordhere",ip:"192.168.1.1", command: 'status'};
 
-sendRCONCommandToServer(options).then(res =>{
+misrcon.sendRCONCommandToServer(options).then(function (res) {
+  // Do something with the response here
   console.log(res);
 });
+
 ```
 
 ## Contributing
