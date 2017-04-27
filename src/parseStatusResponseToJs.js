@@ -5,11 +5,11 @@
  */
 
 export function parseStatusResponseToJs(statusString) {
-  let serverStatusString = getServerStatus(statusString);
-  let serverStatusObject = getStatusObjectFromString(serverStatusString);
+  const serverStatusString = getServerStatus(statusString);
+  const serverStatusObject = getStatusObjectFromString(serverStatusString);
 
-  let playersString = getPlayersString(statusString);
-  let playersArray = splitPlayerStringRowsIntoArray(playersString);
+  const playersString = getPlayersString(statusString);
+  const playersArray = splitPlayerStringRowsIntoArray(playersString);
 
   return {
     serverStatus: serverStatusObject,
@@ -20,7 +20,7 @@ export function parseStatusResponseToJs(statusString) {
 
 function getServerStatus(str) {
   const regex = /-*[\s\S]*- */g;
-  let regArray = regex.exec(str);
+  const regArray = regex.exec(str);
   if (regArray.length !== 1) {
     return regArray.length > 1 ? regArray[0] : regArray[1];
   } else {
@@ -48,15 +48,15 @@ function getStatusObjectFromString(str) {
 }
 
 function getPlayersString(str) {
-  let pString = /Server Status:[\s\S]*.*/g;
-  let newStr = pString.exec(String(str));
+  const pString = /Server Status:[\s\S]*.*/g;
+  const newStr = pString.exec(String(str));
   return newStr[0].replace('Server Status:\n', '');
 }
 
 
 function splitPlayerStringRowsIntoArray(str) {
-  let stringArray = str.split('\n');
-  let playersArray = [];
+  const stringArray = str.split('\n');
+  const playersArray = [];
 
   const steamIdRE = new RegExp('steam: (.*)  name:');
   const nameRE = new RegExp('name: (.*)  entID:');
@@ -79,7 +79,5 @@ function splitPlayerStringRowsIntoArray(str) {
       profile: profileRE.exec(player) !== null ? profileRE.exec(player)[1] : '',
     });
   });
-  return playersArray.filter((player) => {
-    return player.steam !== '';
-  });
+  return playersArray.filter((player) => player.steam !== '');
 }

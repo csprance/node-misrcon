@@ -3,16 +3,42 @@
 
 import {expect} from 'chai';
 import misrcon from '../dist';
-import {us75} from '../secrets';
+import {us77, br1} from '../secrets';
 
-describe('sendRCONCommandToServer Tests', () => {
-
-  it('us75 status', () => {
-    misrcon.sendRCONCommandToServer({...us75, command: 'status'}).then((res) => {
-      console.log(res);
-
+// make sure we can hit some endpoints
+describe('sendRCONCommandToServer', () => {
+  it('us77 status', () => {
+    return misrcon.sendRCONCommandToServer(us77).then((res) => {
+      expect(typeof res).to.equal('string');
+    }).catch((e) => {
+      console.log(e);
     });
   });
 
+  it('br1 status', () => {
+    return misrcon.sendRCONCommandToServer(br1).then((res) => {
+      expect(typeof res).to.equal('string');
+    }).catch((e) => {
+      console.log(e);
+    });
+  });
+});
 
+// make sure we can hit some endpoints again
+describe('sendRCONCommandToServer again', () => {
+  it('us77 status two', () => {
+    return misrcon.sendRCONCommandToServer(us77).then((res) => {
+      expect(typeof res).to.equal('string');
+    }).catch((e) => {
+      console.log(e);
+    });
+  });
+
+  it('br1 status two', () => {
+    return misrcon.sendRCONCommandToServer(br1).then((res) => {
+      expect(typeof res).to.equal('string');
+    }).catch((e) => {
+      console.log(e);
+    });
+  });
 });

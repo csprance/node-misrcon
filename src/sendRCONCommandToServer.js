@@ -4,11 +4,11 @@
  * Description: contains tools to send and parse responses from the miscreated game servers RCON
  */
 
-const axios = require('axios');
-const Promise = require('bluebird');
-const {parseString}  = require('xml2js');
-const md5 = require('md5');
-const http = require('http');
+import axios from 'axios';
+import Promise from 'bluebird';
+import {parseString} from 'xml2js';
+import md5 from 'md5';
+import http from 'http';
 
 
 // // RCON Steps
@@ -29,8 +29,7 @@ const http = require('http');
  * @returns{promise} response      returns a promise that resolves to a String
  */
 export function sendRCONCommandToServer(options) {
-  return new Promise(function (resolve, reject) {
-
+  return new Promise((resolve, reject) => {
     // setup
     const serverUrl = `http://${options.ip}:${options.port}/rpc2`;
     const axiosConfig = {
@@ -42,10 +41,10 @@ export function sendRCONCommandToServer(options) {
       // Request: challenge
     const challengeString = createChallengeString();
     axios.post(serverUrl, challengeString, axiosConfig).then(res => {
+      //TODO: Check and see if it says illegal command here and cancel and retry the whole thing
       // Response: uptime
-      let upTime = getUpTimeFromChallengeResponse(res.data);
-      let challengeResponseRequest = createChallengeResponseString(upTime, options.password);
-
+      const upTime = getUpTimeFromChallengeResponse(res.data);
+      const challengeResponseRequest = createChallengeResponseString(upTime, options.password);
 
       /** --- 2 --- */
       // Request: md5(uptime:password)
@@ -54,32 +53,33 @@ export function sendRCONCommandToServer(options) {
       // Response: AuthResponse
       parseAuthResponse(res.data, reject);
 
-
       /** --- 3 --- */
         // Request: CommandString
-      let commandString = createCommandString(options.command);
+      const commandString = createCommandString(options.command);
       axios.post(serverUrl, commandString, axiosConfig).then(rconResult => {
         // Response: rconResult
         resolve(parseCommandResponse(rconResult.data));
+
+        // close the connection
+        // otherwise it never closes and will fail on every other request
+        axios.post(serverUrl, 'close', axiosConfig).catch(() => {
+        });// we just catch the error silently because we know it will fail
       });
     });
   });
 }
 
-
 function createChallengeString() {
-  console.log('createChallengeString');
-  return `<methodCall><methodName>challenge</methodName><params></params></methodCall>`;
+  return '<methodCall><methodName>challenge</methodName><params></params></methodCall>';
 }
 
 function createChallengeResponseString(upTime, password) {
   // by doing md5(uptime:password)
-  console.log('createChallengeResponseString');
   return `<methodCall><methodName>authenticate</methodName><params><param><value><string>${md5(`${upTime}:${password}`)}</string></value></param></params></methodCall>`;
 }
 
+
 function createCommandString(command) {
-  console.log('createCommandString');
   return `<methodCall><methodName>${command}</methodName><params></params></methodCall>`;
 }
 
@@ -109,16 +109,15 @@ function parseCommandResponse(str) {
 function parseAuthResponse(data, reject) {
   // server response looks like this
   // <?xml version='1.0'?><methodResponse><params><param><value><string>authorized</string></value></param></params></methodResponse>
-
   // sometimes auth passes after a few tries it just keeps the connection open
   // Handle auth failed here
   let authResults = '';
   parseString(data, (err, result) => {
     authResults = result.methodResponse.params[0].param[0].value[0].string[0];
     //console.log('authResults: ', authResults);
-    // if (authResults !== 'authorized') {
-    //   reject('Incorrect Password');
-    // }
+    if (authResults !== 'authorized') {
+      reject('Incorrect Password');
+    }
   });
   return authResults;
 }

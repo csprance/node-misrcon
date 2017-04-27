@@ -15,6 +15,3 @@ export function parseWhitelistResponseToJs(res) {
     .filter((x) => x !== '0')
     .filter((x) => x !== '');
 }
-
-
-

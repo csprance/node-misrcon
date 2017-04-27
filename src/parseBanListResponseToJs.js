@@ -14,4 +14,3 @@ export function parseBanListResponseToJs(res) {
     .filter((x) => x !== 'SteamID:')
     .filter((x) => x !== '');
 }
-

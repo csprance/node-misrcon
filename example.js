@@ -2,10 +2,10 @@
 
 /* global require */
 
-let misrcon = require('./dist').default;
-let {dev} = require('./secrets');
+const misrcon = require('./dist').default;
+const {dev} = require('./secrets');
 
-misrcon.sendRCONCommandToServer({dev}).then(function (res) {
+misrcon.sendRCONCommandToServer(dev).then(function (res) {
   // Do something with the response here
   console.log(res);
 });
