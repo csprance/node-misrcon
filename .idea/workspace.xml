@@ -2,22 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a96c966-1673-47cd-b5ad-98e0bd713eec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/Entrada_Interactive.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/chris.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/mock-server-responses.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/parseStatusResponseToJs-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.eslintrc" afterPath="$PROJECT_DIR$/.eslintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/parseBanListResponseToJs.js" afterPath="$PROJECT_DIR$/dist/parseBanListResponseToJs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/parseStatusResponseToJs.js" afterPath="$PROJECT_DIR$/dist/parseStatusResponseToJs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/parseWhitelistResponseToJs.js" afterPath="$PROJECT_DIR$/dist/parseWhitelistResponseToJs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/sendRCONCommandToServer.js" afterPath="$PROJECT_DIR$/dist/sendRCONCommandToServer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parseBanListResponseToJs.js" afterPath="$PROJECT_DIR$/src/parseBanListResponseToJs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parseStatusResponseToJs.js" afterPath="$PROJECT_DIR$/src/parseStatusResponseToJs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parseWhitelistResponseToJs.js" afterPath="$PROJECT_DIR$/src/parseWhitelistResponseToJs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-dist/sendRCONCommandToServer-test.js" afterPath="$PROJECT_DIR$/test-dist/sendRCONCommandToServer-test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/sendRCONCommandToServer-test.js" afterPath="$PROJECT_DIR$/test/sendRCONCommandToServer-test.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,7 +32,7 @@
           <file leaf-file-name="parseStatusResponseToJs.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/parseStatusResponseToJs.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="818">
+                <state relative-caret-position="1395">
                   <caret line="69" column="48" lean-forward="true" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
                   <folding />
                 </state>
@@ -64,7 +48,7 @@
               <file leaf-file-name="parseStatusResponseToJs-test.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/test/parseStatusResponseToJs-test.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="224">
+                    <state relative-caret-position="484">
                       <caret line="22" column="65" lean-forward="false" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
                       <folding />
                     </state>
@@ -75,12 +59,22 @@
           </split-first>
           <split-second>
             <leaf>
-              <file leaf-file-name="mock-server-responses.js" pinned="false" current-in-tab="true">
+              <file leaf-file-name="mock-server-responses.js" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/test/mock-server-responses.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="638">
+                    <state relative-caret-position="731">
                       <caret line="49" column="88" lean-forward="false" selection-start-line="49" selection-start-column="88" selection-end-line="49" selection-end-column="88" />
                       <caret line="50" column="88" lean-forward="false" selection-start-line="50" selection-start-column="88" selection-end-line="50" selection-end-column="88" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="sendRCONCommandToServer-test.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/test/sendRCONCommandToServer-test.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="946">
+                      <caret line="43" column="3" lean-forward="false" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
                       <folding />
                     </state>
                   </provider>
@@ -123,11 +117,11 @@
         <option value="$PROJECT_DIR$/src/parseBanListResponseToJs.js" />
         <option value="$PROJECT_DIR$/src/parseWhitelistResponseToJs.js" />
         <option value="$PROJECT_DIR$/example.js" />
-        <option value="$PROJECT_DIR$/test/sendRCONCommandToServer-test.js" />
         <option value="$PROJECT_DIR$/.eslintrc" />
         <option value="$PROJECT_DIR$/src/parseStatusResponseToJs.js" />
         <option value="$PROJECT_DIR$/test/parseStatusResponseToJs-test.js" />
         <option value="$PROJECT_DIR$/test/mock-server-responses.js" />
+        <option value="$PROJECT_DIR$/test/sendRCONCommandToServer-test.js" />
       </list>
     </option>
   </component>
@@ -395,8 +389,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.example.js" />
-        <item index="1" class="java.lang.String" itemvalue="Gulp.js.watch" />
+        <item index="0" class="java.lang.String" itemvalue="Gulp.js.watch" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.example.js" />
         <item index="2" class="java.lang.String" itemvalue="Node.js.sendRCONCommandToServer-test.js" />
         <item index="3" class="java.lang.String" itemvalue="Gulp.js.test" />
         <item index="4" class="java.lang.String" itemvalue="Gulp.js.default" />
@@ -415,12 +409,12 @@
       <updated>1493275399390</updated>
       <workItem from="1493275400746" duration="408000" />
       <workItem from="1493275967752" duration="15770000" />
-      <workItem from="1493355381843" duration="9348000" />
+      <workItem from="1493355381843" duration="9413000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25526000" />
+    <option name="totallyTimeSpent" value="25591000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="3858" height="2128" extended-state="6" />
@@ -640,14 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/sendRCONCommandToServer-test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.eslintrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
@@ -666,7 +652,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parseStatusResponseToJs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="818">
+        <state relative-caret-position="1395">
           <caret line="69" column="48" lean-forward="true" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
           <folding />
         </state>
@@ -674,7 +660,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/parseStatusResponseToJs-test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
+        <state relative-caret-position="484">
           <caret line="22" column="65" lean-forward="false" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
           <folding />
         </state>
@@ -682,9 +668,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/mock-server-responses.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
+        <state relative-caret-position="731">
           <caret line="49" column="88" lean-forward="false" selection-start-line="49" selection-start-column="88" selection-end-line="49" selection-end-column="88" />
           <caret line="50" column="88" lean-forward="false" selection-start-line="50" selection-start-column="88" selection-end-line="50" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/sendRCONCommandToServer-test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="43" column="3" lean-forward="false" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
           <folding />
         </state>
       </provider>
