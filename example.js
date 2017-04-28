@@ -3,9 +3,9 @@
 /* global require */
 
 const misrcon = require('./dist').default;
-const {dev} = require('./secrets');
+const {br1} = require('./secrets');
 
-misrcon.sendRCONCommandToServer(dev).then(function (res) {
+misrcon.sendRCONCommandToServer(br1).then(function (res) {
   // Do something with the response here
-  console.log(res);
+  console.log(misrcon.parseStatusResponseToJs(res));
 });

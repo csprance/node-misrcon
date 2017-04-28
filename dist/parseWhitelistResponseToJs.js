@@ -10,7 +10,7 @@ exports.parseWhitelistResponseToJs = parseWhitelistResponseToJs;
  * @returns {Array} An array of whitelisted players
  */
 function parseWhitelistResponseToJs(res) {
-  return res.replace('-----------------------------------------', '').replace('-----------------------------------------', '').replace(/(\r\n|\n|\r)/gm, ' ').replace('Whitelisted players : ', '').split(' ').filter(function (x) {
+  return res.split('-----------------------------------------')[1].replace('-----------------------------------------', '').replace('-----------------------------------------', '').replace(/(\r\n|\n|\r)/gm, ' ').replace('Whitelisted players : ', '').split(' ').filter(function (x) {
     return x !== 'SteamID:';
   }).filter(function (x) {
     return x !== '0';

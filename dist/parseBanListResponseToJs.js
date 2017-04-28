@@ -10,7 +10,7 @@ exports.parseBanListResponseToJs = parseBanListResponseToJs;
  * @returns {Array} An array of banned players
  */
 function parseBanListResponseToJs(res) {
-  return res.replace('-----------------------------------------', '').replace('-----------------------------------------', '').replace(/(\r\n|\n|\r)/gm, ' ').replace('Banned players : ', '').split(' ').filter(function (x) {
+  return res.split('-----------------------------------------')[1].replace('-----------------------------------------', '').replace('-----------------------------------------', '').replace(/(\r\n|\n|\r)/gm, ' ').replace('Banned players : ', '').split(' ').filter(function (x) {
     return x !== 'SteamID:';
   }).filter(function (x) {
     return x !== '';

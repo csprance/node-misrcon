@@ -48,7 +48,7 @@ describe('parseStatusResponseToJs', function () {
   });
 
   it('dev status with players', function () {
-    var status = _dist2.default.parseStatusResponseToJs(mock.devStatusWPlayers);
+    var status = _dist2.default.parseStatusResponseToJs(mock.statusWPlayersDev);
     (0, _chai.expect)(status.name).to.equal('Dev Server');
     (0, _chai.expect)(status.ip).to.equal('Server10243');
     (0, _chai.expect)(status.version).to.equal('0.1.1.1892');
@@ -60,7 +60,7 @@ describe('parseStatusResponseToJs', function () {
   });
 
   it('dev status with no players', function () {
-    var status = _dist2.default.parseStatusResponseToJs(mock.devStatusNoPlayers);
+    var status = _dist2.default.parseStatusResponseToJs(mock.statusNoPlayersDev);
     (0, _chai.expect)(status.name).to.equal('Dev Server');
     (0, _chai.expect)(status.ip).to.equal('Server10243');
     (0, _chai.expect)(status.version).to.equal('0.1.1.1892');

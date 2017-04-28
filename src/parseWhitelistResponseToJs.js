@@ -5,6 +5,7 @@
  */
 export function parseWhitelistResponseToJs(res) {
   return res
+    .split('-----------------------------------------')[1]
     .replace('-----------------------------------------', '')
     .replace('-----------------------------------------', '')
     .replace(/(\r\n|\n|\r)/gm, ' ')

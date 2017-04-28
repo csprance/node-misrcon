@@ -39,7 +39,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('dev status with players', () => {
-    let status = misrcon.parseStatusResponseToJs(mock.devStatusWPlayers);
+    let status = misrcon.parseStatusResponseToJs(mock.statusWPlayersDev);
     expect(status.name).to.equal('Dev Server');
     expect(status.ip).to.equal('Server10243');
     expect(status.version).to.equal('0.1.1.1892');
@@ -51,7 +51,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('dev status with no players', () => {
-    let status = misrcon.parseStatusResponseToJs(mock.devStatusNoPlayers);
+    let status = misrcon.parseStatusResponseToJs(mock.statusNoPlayersDev);
     expect(status.name).to.equal('Dev Server');
     expect(status.ip).to.equal('Server10243');
     expect(status.version).to.equal('0.1.1.1892');

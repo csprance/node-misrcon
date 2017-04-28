@@ -10,16 +10,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                                                                                                                                                                                                                                                                    * Description:
                                                                                                                                                                                                                                                                    */
 
+
 exports.parseStatusResponseToJs = parseStatusResponseToJs;
 
-var _lodash = require('lodash');
+var _trim = require('lodash/trim');
 
-var _lodash2 = _interopRequireDefault(_lodash);
+var _trim2 = _interopRequireDefault(_trim);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function parseStatusResponseToJs(statusString) {
   // what the obj will look like when we send it back
+  var player = { steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: '' };
   var retObj = {
     name: '',
     ip: '',
@@ -28,7 +30,7 @@ function parseStatusResponseToJs(statusString) {
     gameRules: '',
     time: '',
     players: '',
-    playersArray: [{ steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: '' }]
+    playersArray: [player]
   };
 
   var serverStatusObject = getStatusObjectFromString(statusString);
@@ -80,14 +82,14 @@ function splitPlayerStringRowsIntoArray(str) {
 
   stringArray.forEach(function (player) {
     playersArray.push({
-      steam: steamIdRE.exec(player) !== null ? _lodash2.default.trim(steamIdRE.exec(player)[1]) : '',
-      name: nameRE.exec(player) !== null ? _lodash2.default.trim(nameRE.exec(player)[1]) : '',
-      entID: entIDRE.exec(player) !== null ? _lodash2.default.trim(entIDRE.exec(player)[1]) : '',
-      id: idRE.exec(player) !== null ? _lodash2.default.trim(idRE.exec(player)[1]) : '',
-      ip: ipRE.exec(player) !== null ? _lodash2.default.trim(ipRE.exec(player)[1]) : '',
-      ping: pingRE.exec(player) !== null ? _lodash2.default.trim(pingRE.exec(player)[1]) : '',
-      state: stateRE.exec(player) !== null ? _lodash2.default.trim(stateRE.exec(player)[1]) : '',
-      profile: profileRE.exec(player) !== null ? _lodash2.default.trim(profileRE.exec(player)[1]) : ''
+      steam: steamIdRE.exec(player) !== null ? (0, _trim2.default)(steamIdRE.exec(player)[1]) : '',
+      name: nameRE.exec(player) !== null ? (0, _trim2.default)(nameRE.exec(player)[1]) : '',
+      entID: entIDRE.exec(player) !== null ? (0, _trim2.default)(entIDRE.exec(player)[1]) : '',
+      id: idRE.exec(player) !== null ? (0, _trim2.default)(idRE.exec(player)[1]) : '',
+      ip: ipRE.exec(player) !== null ? (0, _trim2.default)(ipRE.exec(player)[1]) : '',
+      ping: pingRE.exec(player) !== null ? (0, _trim2.default)(pingRE.exec(player)[1]) : '',
+      state: stateRE.exec(player) !== null ? (0, _trim2.default)(stateRE.exec(player)[1]) : '',
+      profile: profileRE.exec(player) !== null ? (0, _trim2.default)(profileRE.exec(player)[1]) : ''
     });
   });
   return playersArray.filter(function (player) {

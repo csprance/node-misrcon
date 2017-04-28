@@ -3,11 +3,11 @@
  * Created by chris on 4/27/2017.
  * Description:
  */
-
-import _ from 'lodash';
+import trim from 'lodash/trim';
 
 export function parseStatusResponseToJs(statusString) {
   // what the obj will look like when we send it back
+  let player = {steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: ''};
   let retObj = {
     name: '',
     ip: '',
@@ -17,7 +17,7 @@ export function parseStatusResponseToJs(statusString) {
     time: '',
     players: '',
     playersArray: [
-      {steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: ''}
+      player
     ],
   };
 
@@ -71,14 +71,14 @@ function splitPlayerStringRowsIntoArray(str) {
 
   stringArray.forEach((player) => {
     playersArray.push({
-      steam: steamIdRE.exec(player) !== null ? _.trim(steamIdRE.exec(player)[1]) : '',
-      name: nameRE.exec(player) !== null ? _.trim(nameRE.exec(player)[1]) : '',
-      entID: entIDRE.exec(player) !== null ? _.trim(entIDRE.exec(player)[1]) : '',
-      id: idRE.exec(player) !== null ? _.trim(idRE.exec(player)[1]) : '',
-      ip: ipRE.exec(player) !== null ? _.trim(ipRE.exec(player)[1]) : '',
-      ping: pingRE.exec(player) !== null ? _.trim(pingRE.exec(player)[1]) : '',
-      state: stateRE.exec(player) !== null ? _.trim(stateRE.exec(player)[1]) : '',
-      profile: profileRE.exec(player) !== null ? _.trim(profileRE.exec(player)[1]) : '',
+      steam: steamIdRE.exec(player) !== null ? trim(steamIdRE.exec(player)[1]) : '',
+      name: nameRE.exec(player) !== null ? trim(nameRE.exec(player)[1]) : '',
+      entID: entIDRE.exec(player) !== null ? trim(entIDRE.exec(player)[1]) : '',
+      id: idRE.exec(player) !== null ? trim(idRE.exec(player)[1]) : '',
+      ip: ipRE.exec(player) !== null ? trim(ipRE.exec(player)[1]) : '',
+      ping: pingRE.exec(player) !== null ? trim(pingRE.exec(player)[1]) : '',
+      state: stateRE.exec(player) !== null ? trim(stateRE.exec(player)[1]) : '',
+      profile: profileRE.exec(player) !== null ? trim(profileRE.exec(player)[1]) : '',
     });
   });
   return playersArray.filter((player) => player.steam !== '');
