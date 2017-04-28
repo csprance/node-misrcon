@@ -62,18 +62,7 @@ export function sendRCONCommandToServer(options) {
 
         // close the connection
         // otherwise it never closes and will fail on every other request
-        axios.post(serverUrl, 'close', {
-          ...axiosConfig,
-          // `validateStatus` defines whether to resolve or reject the promise for a given
-          // HTTP response status code. If `validateStatus` returns `true` (or is set to `null`
-          // or `undefined`), the promise will be resolved; otherwise, the promise will be
-          // rejected.
-          validateStatus: (status) => {
-            return true;
-          },
-        }).catch((e) => {
-          console.log('');
-        });// we just catch the error silently because we know it will fail
+        axios.post(serverUrl, 'close', axiosConfig).catch(() => {});// we just catch the error silently because we know it will fail
       });
     });
   });

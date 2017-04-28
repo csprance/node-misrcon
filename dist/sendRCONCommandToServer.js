@@ -3,13 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /**
-                                                                                                                                                                                                                                                                   * Name: sendRCONCommandToServer
-                                                                                                                                                                                                                                                                   * Created by chris on 4/26/2017.
-                                                                                                                                                                                                                                                                   * Description: contains tools to send and parse responses from the miscreated game servers RCON
-                                                                                                                                                                                                                                                                   */
-
 exports.sendRCONCommandToServer = sendRCONCommandToServer;
 
 var _axios = require('axios');
@@ -83,21 +76,15 @@ function sendRCONCommandToServer(options) {
 
         // close the connection
         // otherwise it never closes and will fail on every other request
-        _axios2.default.post(serverUrl, 'close', _extends({}, axiosConfig, {
-          // `validateStatus` defines whether to resolve or reject the promise for a given
-          // HTTP response status code. If `validateStatus` returns `true` (or is set to `null`
-          // or `undefined`), the promise will be resolved; otherwise, the promise will be
-          // rejected.
-          validateStatus: function validateStatus(status) {
-            return true;
-          }
-        })).catch(function (e) {
-          console.log('');
-        }); // we just catch the error silently because we know it will fail
+        _axios2.default.post(serverUrl, 'close', axiosConfig).catch(function () {}); // we just catch the error silently because we know it will fail
       });
     });
   });
-}
+} /**
+   * Name: sendRCONCommandToServer
+   * Created by chris on 4/26/2017.
+   * Description: contains tools to send and parse responses from the miscreated game servers RCON
+   */
 
 function createChallengeString() {
   return '<methodCall><methodName>challenge</methodName><params></params></methodCall>';
