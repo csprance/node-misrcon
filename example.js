@@ -2,7 +2,7 @@
 
 /* global require */
 
-const misrcon = require('./dist').default;
+const misrcon = require('./dist');
 
 misrcon.sendRCONCommandToServer({port: "81810", password: "rconPassword", ip: "192.168.1.1", command: "status"}).then(function (res) {
   // Parse the status response
