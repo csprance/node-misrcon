@@ -5,11 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.parseBanListResponseToJs = parseBanListResponseToJs;
 /**
- * Name: parseBanListResponseToJs
- * Created by chris on 4/27/2017.
- * Description:
+ * Parses the response from the rcon command mis_banlist_status
+ * @param {string} res   string with the server response
+ * @returns {Array} An array of banned players
  */
-
 function parseBanListResponseToJs(res) {
   return res.replace('-----------------------------------------', '').replace('-----------------------------------------', '').replace(/(\r\n|\n|\r)/gm, ' ').replace('Banned players : ', '').split(' ').filter(function (x) {
     return x !== 'SteamID:';

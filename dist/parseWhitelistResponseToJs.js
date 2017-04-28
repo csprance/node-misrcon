@@ -5,11 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.parseWhitelistResponseToJs = parseWhitelistResponseToJs;
 /**
- * Name: parseWhitelistResponseToJs
- * Created by chris on 4/27/2017.
- * Description:
+ * Parses the response from the rcon command mis_whitelist_status
+ * @param {string} res   string with the server response
+ * @returns {Array} An array of whitelisted players
  */
-
 function parseWhitelistResponseToJs(res) {
   return res.replace('-----------------------------------------', '').replace('-----------------------------------------', '').replace(/(\r\n|\n|\r)/gm, ' ').replace('Whitelisted players : ', '').split(' ').filter(function (x) {
     return x !== 'SteamID:';

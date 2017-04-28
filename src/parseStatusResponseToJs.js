@@ -4,46 +4,48 @@
  * Description:
  */
 
+import _ from 'lodash';
+
 export function parseStatusResponseToJs(statusString) {
-  const serverStatusString = getServerStatus(statusString);
-  const serverStatusObject = getStatusObjectFromString(serverStatusString);
+  // what the obj will look like when we send it back
+  let retObj = {
+    name: '',
+    ip: '',
+    version: '',
+    level: '',
+    gameRules: '',
+    time: '',
+    players: '',
+    playersArray: [
+      {steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: ''}
+    ],
+  };
+
+  const serverStatusObject = getStatusObjectFromString(statusString);
 
   const playersString = getPlayersString(statusString);
   const playersArray = splitPlayerStringRowsIntoArray(playersString);
-
-  return {
-    serverStatus: serverStatusObject,
-    players: playersArray
-  };
+  return {...retObj, ...serverStatusObject, playersArray};
 }
-
-
-function getServerStatus(str) {
-  const regex = /-*[\s\S]*- */g;
-  const regArray = regex.exec(str);
-  if (regArray.length !== 1) {
-    return regArray.length > 1 ? regArray[0] : regArray[1];
-  } else {
-    return str.replace(regex, '');
-  }
-}
-
 
 function getStatusObjectFromString(str) {
+  let serverStatusString = str.split('-----------------------------------------')[1].replace('Server Status:\n', '');
   const serverNameRE = new RegExp('name: (.*)\n');
   const ipRE = new RegExp('ip: (.*)\n');
   const versionRE = new RegExp('version: (.*)\n');
   const levelRE = new RegExp('level: (.*)\n');
   const gamerulesRE = new RegExp('gamerules: (.*)\n');
   const playersRE = new RegExp('players: (.*)\n');
+  const timeRE = new RegExp('time: (.*)\n');
 
   return {
-    name: serverNameRE.exec(str) !== null ? serverNameRE.exec(str)[1] : '',
-    ip: ipRE.exec(str) !== null ? ipRE.exec(str)[1] : '',
-    version: versionRE.exec(str) !== null ? versionRE.exec(str)[1] : '',
-    level: levelRE.exec(str) !== null ? levelRE.exec(str)[1] : '',
-    gameRules: gamerulesRE.exec(str) !== null ? gamerulesRE.exec(str)[1] : '',
-    players: playersRE.exec(str) !== null ? playersRE.exec(str)[1] : ''
+    name: serverNameRE.exec(serverStatusString) !== null ? serverNameRE.exec(serverStatusString)[1] : '',
+    ip: ipRE.exec(serverStatusString) !== null ? ipRE.exec(serverStatusString)[1] : '',
+    version: versionRE.exec(serverStatusString) !== null ? versionRE.exec(serverStatusString)[1] : '',
+    level: levelRE.exec(serverStatusString) !== null ? levelRE.exec(serverStatusString)[1] : '',
+    gameRules: gamerulesRE.exec(serverStatusString) !== null ? gamerulesRE.exec(serverStatusString)[1] : '',
+    time: timeRE.exec(serverStatusString) !== null ? timeRE.exec(serverStatusString)[1] : '',
+    players: playersRE.exec(serverStatusString) !== null ? playersRE.exec(serverStatusString)[1] : ''
   };
 }
 
@@ -69,14 +71,14 @@ function splitPlayerStringRowsIntoArray(str) {
 
   stringArray.forEach((player) => {
     playersArray.push({
-      steam: steamIdRE.exec(player) !== null ? steamIdRE.exec(player)[1] : '',
-      name: nameRE.exec(player) !== null ? nameRE.exec(player)[1] : '',
-      entID: entIDRE.exec(player) !== null ? entIDRE.exec(player)[1] : '',
-      id: idRE.exec(player) !== null ? idRE.exec(player)[1] : '',
-      ip: ipRE.exec(player) !== null ? ipRE.exec(player)[1] : '',
-      ping: pingRE.exec(player) !== null ? pingRE.exec(player)[1] : '',
-      state: stateRE.exec(player) !== null ? stateRE.exec(player)[1] : '',
-      profile: profileRE.exec(player) !== null ? profileRE.exec(player)[1] : '',
+      steam: steamIdRE.exec(player) !== null ? _.trim(steamIdRE.exec(player)[1]) : '',
+      name: nameRE.exec(player) !== null ? _.trim(nameRE.exec(player)[1]) : '',
+      entID: entIDRE.exec(player) !== null ? _.trim(entIDRE.exec(player)[1]) : '',
+      id: idRE.exec(player) !== null ? _.trim(idRE.exec(player)[1]) : '',
+      ip: ipRE.exec(player) !== null ? _.trim(ipRE.exec(player)[1]) : '',
+      ping: pingRE.exec(player) !== null ? _.trim(pingRE.exec(player)[1]) : '',
+      state: stateRE.exec(player) !== null ? _.trim(stateRE.exec(player)[1]) : '',
+      profile: profileRE.exec(player) !== null ? _.trim(profileRE.exec(player)[1]) : '',
     });
   });
   return playersArray.filter((player) => player.steam !== '');

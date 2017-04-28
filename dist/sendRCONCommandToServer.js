@@ -55,6 +55,7 @@ function sendRCONCommandToServer(options) {
     // Request: challenge
     var challengeString = createChallengeString();
     _axios2.default.post(serverUrl, challengeString, axiosConfig).then(function (res) {
+      //TODO: Check and see if it says illegal command here and cancel and retry the whole thing
       // Response: uptime
       var upTime = getUpTimeFromChallengeResponse(res.data);
       var challengeResponseRequest = createChallengeResponseString(upTime, options.password);

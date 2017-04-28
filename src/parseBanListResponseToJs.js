@@ -1,9 +1,8 @@
 /**
- * Name: parseBanListResponseToJs
- * Created by chris on 4/27/2017.
- * Description:
+ * Parses the response from the rcon command mis_banlist_status
+ * @param {string} res   string with the server response
+ * @returns {Array} An array of banned players
  */
-
 export function parseBanListResponseToJs(res) {
   return res
     .replace('-----------------------------------------', '')

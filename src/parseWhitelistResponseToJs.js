@@ -1,9 +1,8 @@
 /**
- * Name: parseWhitelistResponseToJs
- * Created by chris on 4/27/2017.
- * Description:
+ * Parses the response from the rcon command mis_whitelist_status
+ * @param {string} res   string with the server response
+ * @returns {Array} An array of whitelisted players
  */
-
 export function parseWhitelistResponseToJs(res) {
   return res
     .replace('-----------------------------------------', '')
