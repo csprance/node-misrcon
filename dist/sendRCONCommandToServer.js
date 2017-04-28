@@ -89,7 +89,7 @@ function sendRCONCommandToServer(options) {
           // or `undefined`), the promise will be resolved; otherwise, the promise will be
           // rejected.
           validateStatus: function validateStatus(status) {
-            return status === 400;
+            return true;
           }
         })).catch(function () {}); // we just catch the error silently because we know it will fail
       });
