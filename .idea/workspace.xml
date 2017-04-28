@@ -4,7 +4,6 @@
     <list default="true" id="0a96c966-1673-47cd-b5ad-98e0bd713eec" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/sendRCONCommandToServer.js" afterPath="$PROJECT_DIR$/dist/sendRCONCommandToServer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sendRCONCommandToServer.js" afterPath="$PROJECT_DIR$/src/sendRCONCommandToServer.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +22,8 @@
       <file leaf-file-name="sendRCONCommandToServer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sendRCONCommandToServer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="968">
-              <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+            <state relative-caret-position="924">
+              <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -383,12 +382,12 @@
       <workItem from="1493275967752" duration="15770000" />
       <workItem from="1493355381843" duration="9925000" />
       <workItem from="1493396682802" duration="3950000" />
-      <workItem from="1493409058197" duration="698000" />
+      <workItem from="1493409058197" duration="1352000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30751000" />
+    <option name="totallyTimeSpent" value="31405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="3858" height="2128" extended-state="6" />
@@ -684,8 +683,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sendRCONCommandToServer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="968">
-          <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+        <state relative-caret-position="924">
+          <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
           <folding />
         </state>
       </provider>

@@ -71,7 +71,8 @@ export function sendRCONCommandToServer(options) {
           validateStatus: (status) => {
             return true;
           },
-        }).catch(() => {
+        }).catch((e) => {
+          console.log('');
         });// we just catch the error silently because we know it will fail
       });
     });

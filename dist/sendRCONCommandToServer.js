@@ -91,7 +91,9 @@ function sendRCONCommandToServer(options) {
           validateStatus: function validateStatus(status) {
             return true;
           }
-        })).catch(function () {}); // we just catch the error silently because we know it will fail
+        })).catch(function (e) {
+          console.log('');
+        }); // we just catch the error silently because we know it will fail
       });
     });
   });
