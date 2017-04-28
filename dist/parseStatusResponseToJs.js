@@ -4,21 +4,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /**
-                                                                                                                                                                                                                                                                   * Name: parseStatusResponseToJs
-                                                                                                                                                                                                                                                                   * Created by chris on 4/27/2017.
-                                                                                                                                                                                                                                                                   * Description:
-                                                                                                                                                                                                                                                                   */
-
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.parseStatusResponseToJs = parseStatusResponseToJs;
+/**
+ * Name: parseStatusResponseToJs
+ * Created by chris on 4/27/2017.
+ * Description:
+ */
 
-var _trim = require('lodash/trim');
-
-var _trim2 = _interopRequireDefault(_trim);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+/**
+ * Parses the response from the rcon command status
+ * @param {string} statusString   string with the server response
+ * @returns {Object} An object containing the server status and a
+ * playersArray containing player objects
+ */
 function parseStatusResponseToJs(statusString) {
   // what the obj will look like when we send it back
   var player = { steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: '' };
@@ -32,9 +32,7 @@ function parseStatusResponseToJs(statusString) {
     players: '',
     playersArray: [player]
   };
-
   var serverStatusObject = getStatusObjectFromString(statusString);
-
   var playersString = getPlayersString(statusString);
   var playersArray = splitPlayerStringRowsIntoArray(playersString);
   return _extends({}, retObj, serverStatusObject, { playersArray: playersArray });
@@ -82,14 +80,14 @@ function splitPlayerStringRowsIntoArray(str) {
 
   stringArray.forEach(function (player) {
     playersArray.push({
-      steam: steamIdRE.exec(player) !== null ? (0, _trim2.default)(steamIdRE.exec(player)[1]) : '',
-      name: nameRE.exec(player) !== null ? (0, _trim2.default)(nameRE.exec(player)[1]) : '',
-      entID: entIDRE.exec(player) !== null ? (0, _trim2.default)(entIDRE.exec(player)[1]) : '',
-      id: idRE.exec(player) !== null ? (0, _trim2.default)(idRE.exec(player)[1]) : '',
-      ip: ipRE.exec(player) !== null ? (0, _trim2.default)(ipRE.exec(player)[1]) : '',
-      ping: pingRE.exec(player) !== null ? (0, _trim2.default)(pingRE.exec(player)[1]) : '',
-      state: stateRE.exec(player) !== null ? (0, _trim2.default)(stateRE.exec(player)[1]) : '',
-      profile: profileRE.exec(player) !== null ? (0, _trim2.default)(profileRE.exec(player)[1]) : ''
+      steam: steamIdRE.exec(player) !== null ? steamIdRE.exec(player)[1].trim() : '',
+      name: nameRE.exec(player) !== null ? nameRE.exec(player)[1].trim() : '',
+      entID: entIDRE.exec(player) !== null ? entIDRE.exec(player)[1].trim() : '',
+      id: idRE.exec(player) !== null ? idRE.exec(player)[1].trim() : '',
+      ip: ipRE.exec(player) !== null ? ipRE.exec(player)[1].trim() : '',
+      ping: pingRE.exec(player) !== null ? pingRE.exec(player)[1].trim() : '',
+      state: stateRE.exec(player) !== null ? stateRE.exec(player)[1].trim() : '',
+      profile: profileRE.exec(player) !== null ? profileRE.exec(player)[1].trim() : ''
     });
   });
   return playersArray.filter(function (player) {

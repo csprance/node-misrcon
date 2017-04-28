@@ -7,7 +7,7 @@ import * as mock from './mock-server-responses';
 
 describe('parseStatusResponseToJs', () => {
   it('status with players', () => {
-    let status = misrcon.parseStatusResponseToJs(mock.statusWPlayers);
+    const status = misrcon.parseStatusResponseToJs(mock.statusWPlayers);
     expect(status.name).to.equal('Official Miscreated - i3D.net - US77 #2008');
     expect(status.ip).to.equal('Server50425');
     expect(status.version).to.equal('0.1.1.1892');
@@ -27,7 +27,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('status with no players', () => {
-    let status = misrcon.parseStatusResponseToJs(mock.statusNoPlayers);
+    const status = misrcon.parseStatusResponseToJs(mock.statusNoPlayers);
     expect(status.name).to.equal('Official Miscreated - i3D.net - US77 #2008');
     expect(status.ip).to.equal('Server50425');
     expect(status.version).to.equal('0.1.1.1892');
@@ -39,7 +39,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('dev status with players', () => {
-    let status = misrcon.parseStatusResponseToJs(mock.statusWPlayersDev);
+    const status = misrcon.parseStatusResponseToJs(mock.statusWPlayersDev);
     expect(status.name).to.equal('Dev Server');
     expect(status.ip).to.equal('Server10243');
     expect(status.version).to.equal('0.1.1.1892');
@@ -51,7 +51,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('dev status with no players', () => {
-    let status = misrcon.parseStatusResponseToJs(mock.statusNoPlayersDev);
+    const status = misrcon.parseStatusResponseToJs(mock.statusNoPlayersDev);
     expect(status.name).to.equal('Dev Server');
     expect(status.ip).to.equal('Server10243');
     expect(status.version).to.equal('0.1.1.1892');

@@ -127,6 +127,7 @@ function parseAuthResponse(data, reject) {
   // <?xml version='1.0'?><methodResponse><params><param><value><string>authorized</string></value></param></params></methodResponse>
   // sometimes auth passes after a few tries it just keeps the connection open
   // Handle auth failed here
+  // TODO: Probably could look into this a little further
   var authResults = '';
   (0, _xml2js.parseString)(data, function (err, result) {
     authResults = result.methodResponse.params[0].param[0].value[0].string[0];

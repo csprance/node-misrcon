@@ -3,12 +3,17 @@
  * Created by chris on 4/27/2017.
  * Description:
  */
-import trim from 'lodash/trim';
 
+/**
+ * Parses the response from the rcon command status
+ * @param {string} statusString   string with the server response
+ * @returns {Object} An object containing the server status and a
+ * playersArray containing player objects
+ */
 export function parseStatusResponseToJs(statusString) {
   // what the obj will look like when we send it back
-  let player = {steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: ''};
-  let retObj = {
+  const player = {steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: ''};
+  const retObj = {
     name: '',
     ip: '',
     version: '',
@@ -20,16 +25,14 @@ export function parseStatusResponseToJs(statusString) {
       player
     ],
   };
-
   const serverStatusObject = getStatusObjectFromString(statusString);
-
   const playersString = getPlayersString(statusString);
   const playersArray = splitPlayerStringRowsIntoArray(playersString);
   return {...retObj, ...serverStatusObject, playersArray};
 }
 
 function getStatusObjectFromString(str) {
-  let serverStatusString = str.split('-----------------------------------------')[1].replace('Server Status:\n', '');
+  const serverStatusString = str.split('-----------------------------------------')[1].replace('Server Status:\n', '');
   const serverNameRE = new RegExp('name: (.*)\n');
   const ipRE = new RegExp('ip: (.*)\n');
   const versionRE = new RegExp('version: (.*)\n');
@@ -71,14 +74,14 @@ function splitPlayerStringRowsIntoArray(str) {
 
   stringArray.forEach((player) => {
     playersArray.push({
-      steam: steamIdRE.exec(player) !== null ? trim(steamIdRE.exec(player)[1]) : '',
-      name: nameRE.exec(player) !== null ? trim(nameRE.exec(player)[1]) : '',
-      entID: entIDRE.exec(player) !== null ? trim(entIDRE.exec(player)[1]) : '',
-      id: idRE.exec(player) !== null ? trim(idRE.exec(player)[1]) : '',
-      ip: ipRE.exec(player) !== null ? trim(ipRE.exec(player)[1]) : '',
-      ping: pingRE.exec(player) !== null ? trim(pingRE.exec(player)[1]) : '',
-      state: stateRE.exec(player) !== null ? trim(stateRE.exec(player)[1]) : '',
-      profile: profileRE.exec(player) !== null ? trim(profileRE.exec(player)[1]) : '',
+      steam: steamIdRE.exec(player) !== null ? steamIdRE.exec(player)[1].trim() : '',
+      name: nameRE.exec(player) !== null ? nameRE.exec(player)[1].trim() : '',
+      entID: entIDRE.exec(player) !== null ? entIDRE.exec(player)[1].trim() : '',
+      id: idRE.exec(player) !== null ? idRE.exec(player)[1].trim() : '',
+      ip: ipRE.exec(player) !== null ? ipRE.exec(player)[1].trim() : '',
+      ping: pingRE.exec(player) !== null ? pingRE.exec(player)[1].trim() : '',
+      state: stateRE.exec(player) !== null ? stateRE.exec(player)[1].trim() : '',
+      profile: profileRE.exec(player) !== null ? profileRE.exec(player)[1].trim() : '',
     });
   });
   return playersArray.filter((player) => player.steam !== '');

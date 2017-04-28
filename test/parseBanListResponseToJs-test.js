@@ -7,22 +7,22 @@ import * as mock from './mock-server-responses';
 
 describe('parseBanlistResponseToJs', () => {
   it('banlist with players', () => {
-    let banlist = misrcon.parseBanListResponseToJs(mock.banStatusWPlayers);
+    const banlist = misrcon.parseBanListResponseToJs(mock.banStatusWPlayers);
     expect(banlist.length).to.equal(2);
   });
 
   it('banlist with no players', () => {
-    let banlist = misrcon.parseBanListResponseToJs(mock.banStatusNoPlayers);
+    const banlist = misrcon.parseBanListResponseToJs(mock.banStatusNoPlayers);
     expect(banlist.length).to.equal(0);
   });
 
   it('dev banlist with players', () => {
-    let banlist = misrcon.parseBanListResponseToJs(mock.banStatusWPlayersDev);
+    const banlist = misrcon.parseBanListResponseToJs(mock.banStatusWPlayersDev);
     expect(banlist.length).to.equal(2);
   });
 
   it('dev banlist with no players', () => {
-    let banlist = misrcon.parseBanListResponseToJs(mock.banStatusNoPlayersDev);
+    const banlist = misrcon.parseBanListResponseToJs(mock.banStatusNoPlayersDev);
     expect(banlist.length).to.equal(0);
   });
 });

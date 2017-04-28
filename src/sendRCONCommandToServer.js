@@ -111,6 +111,7 @@ function parseAuthResponse(data, reject) {
   // <?xml version='1.0'?><methodResponse><params><param><value><string>authorized</string></value></param></params></methodResponse>
   // sometimes auth passes after a few tries it just keeps the connection open
   // Handle auth failed here
+  // TODO: Probably could look into this a little further
   let authResults = '';
   parseString(data, (err, result) => {
     authResults = result.methodResponse.params[0].param[0].value[0].string[0];

@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Chris Sprance",
   "main": "dist/index.js",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
@@ -63,7 +63,6 @@
     "axios": "^0.16.1",
     "bluebird": "^3.5.0",
     "jest": "19.0.2",
-    "lodash": "4.17.4",
     "md5": "^2.2.1",
     "xml2js": "^0.4.17"
   }
