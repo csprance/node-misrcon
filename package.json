@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "author": "Chris Sprance",
   "main": "dist/index.js",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
@@ -47,7 +47,6 @@
     "gulp-eslint": "3.0.1",
     "gulp-mocha": "3.0.1",
     "gulp-rimraf": "0.2.0",
-    "jest": "19.0.2",
     "mocha": "3.1.0",
     "rimraf": "2.5.4",
     "run-sequence": "1.2.2"
@@ -62,7 +61,6 @@
   "dependencies": {
     "axios": "^0.16.1",
     "bluebird": "^3.5.0",
-    "jest": "19.0.2",
     "md5": "^2.2.1",
     "xml2js": "^0.4.17"
   }
