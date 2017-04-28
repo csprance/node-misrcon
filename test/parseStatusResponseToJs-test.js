@@ -2,7 +2,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 
 import { expect } from 'chai';
-import misrcon from '../dist';
+import * as misrcon from '../dist';
 import * as mock from './mock-server-responses';
 
 describe('parseStatusResponseToJs', () => {

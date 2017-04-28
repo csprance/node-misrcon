@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "author": "Chris Sprance",
   "main": "dist/index.js",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
@@ -13,6 +13,7 @@
   "scripts": {
     "watch:source": "rimraf dist/ && babel src/ --watch --out-dir dist/",
     "watch:tests": "rimraf test-dist/ && babel test/ --watch --out-dir test-dist/",
+    "start": "gulp watch",
     "lint": "eslint src test",
     "build:source": "rimraf dist/ && babel src/ --out-dir dist/",
     "build:tests": "rimraf test-dist/ && babel test/ --out-dir test-dist/",

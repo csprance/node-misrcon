@@ -10,7 +10,7 @@
  * @returns {Object} An object containing the server status and a
  * playersArray containing player objects
  */
-export function parseStatusResponseToJs(statusString) {
+const parseStatusResponseToJs = (statusString) => {
   // what the obj will look like when we send it back
   const player = {steam: '', name: '', entID: '', id: '', ip: '', ping: '', state: '', profile: ''};
   const retObj = {
@@ -29,7 +29,7 @@ export function parseStatusResponseToJs(statusString) {
   const playersString = getPlayersString(statusString);
   const playersArray = splitPlayerStringRowsIntoArray(playersString);
   return {...retObj, ...serverStatusObject, playersArray};
-}
+};
 
 function getStatusObjectFromString(str) {
   const serverStatusString = str.split('-----------------------------------------')[1].replace('Server Status:\n', '');
@@ -86,3 +86,6 @@ function splitPlayerStringRowsIntoArray(str) {
   });
   return playersArray.filter((player) => player.steam !== '');
 }
+
+
+export default parseStatusResponseToJs;

@@ -28,7 +28,7 @@ import http from 'http';
  *                           {ip:[ip], port:[port], password:[password], command: [command]}
  * @returns{promise} response      returns a promise that resolves to a String
  */
-export function sendRCONCommandToServer(options) {
+const sendRCONCommandToServer = (options) => {
   return new Promise((resolve, reject) => {
     // setup
     const serverUrl = `http://${options.ip}:${options.port}/rpc2`;
@@ -66,7 +66,7 @@ export function sendRCONCommandToServer(options) {
       });
     });
   });
-}
+};
 
 function createChallengeString() {
   return '<methodCall><methodName>challenge</methodName><params></params></methodCall>';
@@ -121,3 +121,6 @@ function parseAuthResponse(data, reject) {
   });
   return authResults;
 }
+
+
+export default sendRCONCommandToServer;
