@@ -32,11 +32,16 @@ const sendRCONCommandToServer = (options) => {
   return new Promise((resolve, reject) => {
     // setup
     const serverUrl = `http://${options.ip}:${options.port}/rpc2`;
+
+    // axios config
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     const axiosConfig = {
       headers: {'Content-Type': 'text/xml'},
       httpAgent: new http.Agent({keepAlive: true}),
     };
 
+    // it's business time girl!!
     /** --- 1 --- */
       // Request: challenge
     const challengeString = createChallengeString();
@@ -56,14 +61,14 @@ const sendRCONCommandToServer = (options) => {
       /** --- 3 --- */
         // Request: CommandString
       const commandString = createCommandString(options.command);
-      axios.post(serverUrl, commandString, axiosConfig).then(rconResult => {
+      axios.post(serverUrl, commandString, {...axiosConfig, cancelToken: source.token}).then(rconResult => {
         // Response: rconResult
         resolve(parseCommandResponse(rconResult.data));
-
         // close the connection
-        // otherwise it never closes and will fail on every other request
-        axios.post(serverUrl, 'close', axiosConfig).catch(() => {});// we just catch the error silently because we know it will fail
+        source.cancel('Operation canceled by the user.');
       });
+    }).catch(e => {
+      throw e;
     });
   });
 };
