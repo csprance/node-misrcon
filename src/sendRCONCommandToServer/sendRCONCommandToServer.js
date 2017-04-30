@@ -6,10 +6,10 @@
 
 import axios from 'axios';
 import Promise from 'bluebird';
-import { parseString } from 'xml2js';
-import md5 from 'md5';
 import http from 'http';
+import * as utils from '../utils/utils';
 
+import sendChainedCommand from '../sendChainedCommand/sendChainedCommand';
 
 // // RCON Steps
 // --- 1 ---
@@ -44,88 +44,40 @@ const sendRCONCommandToServer = (options) => {
     // it's business time girl!!
     /** --- 1 --- */
       // Request: challenge
-    const challengeString = createChallengeString();
+    const challengeString = utils.createChallengeString();
     axios.post(serverUrl, challengeString, axiosConfig).then(res => {
       //TODO: Check and see if it says illegal command here and cancel and retry the whole thing
+      if (utils.isIllegalCommand(res)) {
+        console.log('sending chained command instead of continuing auth');
+        sendChainedCommand(options).then((res) => {
+          resolve(utils.parseCommandResponse(res.data));
+        });
+      }
+
       // Response: uptime
-      const upTime = getUpTimeFromChallengeResponse(res.data);
-      const challengeResponseRequest = createChallengeResponseString(upTime, options.password);
+      const upTime = utils.getUpTimeFromChallengeResponse(res.data);
+      const challengeResponseRequest = utils.createChallengeResponseString(upTime, options.password);
 
       /** --- 2 --- */
       // Request: md5(uptime:password)
       return axios.post(serverUrl, challengeResponseRequest, axiosConfig);
     }).then(res => {
       // Response: AuthResponse
-      parseAuthResponse(res.data, reject);
+      utils.parseAuthResponse(res.data, reject);
 
       /** --- 3 --- */
         // Request: CommandString
-      const commandString = createCommandString(options.command);
+      const commandString = utils.createCommandString(options.command);
       axios.post(serverUrl, commandString, {...axiosConfig, cancelToken: source.token}).then(rconResult => {
         // Response: rconResult
-        resolve(parseCommandResponse(rconResult.data));
+        resolve(utils.parseCommandResponse(rconResult.data));
         // close the connection
-        source.cancel('Operation canceled by the user.');
+        source.cancel('Closing Connection.');
       });
     }).catch(e => {
       throw e;
     });
   });
 };
-
-function createChallengeString() {
-  return '<methodCall><methodName>challenge</methodName><params></params></methodCall>';
-}
-
-function createChallengeResponseString(upTime, password) {
-  // by doing md5(uptime:password)
-  return `<methodCall><methodName>authenticate</methodName><params><param><value><string>${md5(`${upTime}:${password}`)}</string></value></param></params></methodCall>`;
-}
-
-
-function createCommandString(command) {
-  return `<methodCall><methodName>${command}</methodName><params></params></methodCall>`;
-}
-
-function getUpTimeFromChallengeResponse(str) {
-  // server response looks like
-  // <methodResponse><params><param><value><string>31268616.000000</string></value></param></params></methodResponse>
-
-  //get the uptime by parsing the xml
-  let uptime = '';
-  parseString(str, (err, result) => {
-    uptime = result.methodResponse.params[0].param[0].value[0].string[0];
-  });
-  return uptime;
-}
-
-function parseCommandResponse(str) {
-  // server response looks like
-  // <methodResponse><params><param><value><string>{server response}</string></value></param></params></methodResponse>
-  let res = '';
-  parseString(str, (err, result) => {
-    // parse the response
-    res = result.methodResponse.params[0].param[0].value[0].string[0];
-  });
-  return res;
-}
-
-function parseAuthResponse(data, reject) {
-  // server response looks like this
-  // <?xml version='1.0'?><methodResponse><params><param><value><string>authorized</string></value></param></params></methodResponse>
-  // sometimes auth passes after a few tries it just keeps the connection open
-  // Handle auth failed here
-  // TODO: Probably could look into this a little further
-  let authResults = '';
-  parseString(data, (err, result) => {
-    authResults = result.methodResponse.params[0].param[0].value[0].string[0];
-    //console.log('authResults: ', authResults);
-    if (authResults !== 'authorized') {
-      reject('Incorrect Password');
-    }
-  });
-  return authResults;
-}
-
 
 export default sendRCONCommandToServer;
