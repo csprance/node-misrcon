@@ -47,33 +47,36 @@ const sendRCONCommandToServer = (options) => {
     const challengeString = utils.createChallengeString();
     axios.post(serverUrl, challengeString, axiosConfig).then(res => {
       if (!utils.isIllegalCommand(res)) {
-      // Response: uptime
-      const upTime = utils.getUpTimeFromChallengeResponse(res.data);
-      const challengeResponseRequest = utils.createChallengeResponseString(upTime, options.password);
+        // Response: uptime
+        const upTime = utils.getUpTimeFromChallengeResponse(res.data);
+        const challengeResponseRequest = utils.createChallengeResponseString(upTime, options.password);
 
-      /** --- 2 --- */
-      // Request: md5(uptime:password)
-      return axios.post(serverUrl, challengeResponseRequest, axiosConfig);
+        /** --- 2 --- */
+        // Request: md5(uptime:password)
+        return axios.post(serverUrl, challengeResponseRequest, axiosConfig);
       } else {
-        sendChainedCommand(options).then((res) => {
-          resolve(utils.parseCommandResponse(res.data));
-          // close the connection
-          source.cancel('Closing Connection.');
-        });
+        sendChainedCommand(options)
+          .then((res) => {
+            resolve(res);
+          });
       }
     }).then(res => {
-      // Response: AuthResponse
-      utils.parseAuthResponse(res.data, reject);
+      if (res !== undefined) {
+        // Response: AuthResponse
+        if (res.hasOwnProperty('data')) {
+          utils.parseAuthResponse(res.data, reject);
 
-      /** --- 3 --- */
-        // Request: CommandString
-      const commandString = utils.createCommandString(options.command);
-      axios.post(serverUrl, commandString, {...axiosConfig, cancelToken: source.token}).then(rconResult => {
-        // Response: rconResult
-        resolve(utils.parseCommandResponse(rconResult.data));
-        // close the connection
-        source.cancel('Closing Connection.');
-      });
+          /** --- 3 --- */
+            // Request: CommandString
+          const commandString = utils.createCommandString(options.command);
+          axios.post(serverUrl, commandString, {...axiosConfig, cancelToken: source.token}).then(rconResult => {
+            // Response: rconResult
+            resolve(utils.parseCommandResponse(rconResult.data));
+            // close the connection
+            source.cancel('Closing Connection.');
+          });
+        }
+      }
     }).catch(e => {
       throw e;
     });

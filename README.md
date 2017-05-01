@@ -21,6 +21,7 @@
   * `parseStatusResponseToJs` 
   * `parseBanListResponseToJs` 
   * `parseWhitelistResponseToJs`
+  * `getAllServerData`
 
 ```js
 const misrcon = 'node-misrcon';
@@ -43,11 +44,18 @@ misrcon.sendRCONCommandToServer({port: "81810", password: "rconPassword", ip: "1
   console.log(misrcon.parseWhitelistResponseToJs(res));
 });
 
+misrcon.getAllServerData({port: "81810", password: "rconPassword", ip: "192.168.1.1"})
+.then(function (res) {
+  // parse a whitelist response
+  console.log(res);
+  // => {status: {name: '', ip: '', version: '', level: '', gameRules: '', time: '', players: '', playersArray: [] }, whitelist: [], banlist: []}
+});
 ```
 
 ## Contributing
 We need people to create parsers for the various console responses. There is no accepted way to do it 
-just make sure to spit return an object at the end and add the function into the main object  
+just make sure to spit return an object at the end and add the function into the main object and add some tests as well 
+as making sure all the current tests pass
 
 - [Contributing](docs/contributing/index.md)
   - [Versions: Release Names vs Version Numbers](docs/contributing/versions/index.md)
