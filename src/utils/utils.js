@@ -69,7 +69,9 @@ export function isIllegalCommand(res) {
   let responseString = '';
   let commandRegex = new RegExp(/\[Whitelist] Invalid command: .*/g);
   parseString(res.data, (err, result) => {
-    responseString = result.methodResponse.params[0].param[0].value[0].string[0];
+    if (!err) {
+      responseString = result.methodResponse.params[0].param[0].value[0].string[0];
+    }
   });
   return commandRegex.exec(responseString) !== null;
 }

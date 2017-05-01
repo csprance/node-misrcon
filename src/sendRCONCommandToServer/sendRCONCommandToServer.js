@@ -46,14 +46,7 @@ const sendRCONCommandToServer = (options) => {
       // Request: challenge
     const challengeString = utils.createChallengeString();
     axios.post(serverUrl, challengeString, axiosConfig).then(res => {
-      //TODO: Check and see if it says illegal command here and cancel and retry the whole thing
-      if (utils.isIllegalCommand(res)) {
-        console.log('sending chained command instead of continuing auth');
-        sendChainedCommand(options).then((res) => {
-          resolve(utils.parseCommandResponse(res.data));
-        });
-      }
-
+      if (!utils.isIllegalCommand(res)) {
       // Response: uptime
       const upTime = utils.getUpTimeFromChallengeResponse(res.data);
       const challengeResponseRequest = utils.createChallengeResponseString(upTime, options.password);
@@ -61,6 +54,13 @@ const sendRCONCommandToServer = (options) => {
       /** --- 2 --- */
       // Request: md5(uptime:password)
       return axios.post(serverUrl, challengeResponseRequest, axiosConfig);
+      } else {
+        sendChainedCommand(options).then((res) => {
+          resolve(utils.parseCommandResponse(res.data));
+          // close the connection
+          source.cancel('Closing Connection.');
+        });
+      }
     }).then(res => {
       // Response: AuthResponse
       utils.parseAuthResponse(res.data, reject);
