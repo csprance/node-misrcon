@@ -17,6 +17,7 @@
     "padded-blocks": 0,
     "consistent-return": 0,
     "no-case-declarations": 0,
+    "no-tabs": "off",
     "object-curly-spacing": 0,
     "no-shadow": 0,
     "space-before-function-paren": 0,
