@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "author": "Chris Sprance",
   "main": "dist/index.js",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
