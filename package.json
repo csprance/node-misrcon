@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "author": "Chris Sprance",
   "main": "dist/index.js",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
@@ -17,10 +17,11 @@
     "prebublish": "npm run build",
     "lint": "eslint src test",
     "flow": "flow status",
+    "flow-gen-files": "flow gen-flow-files ./src/types.js.flow > ./dist/types.js.flow",
     "build:source": "rimraf dist/ && babel src/ --out-dir dist/",
     "build:tests": "rimraf test-dist/ && babel test/ --out-dir test-dist/",
     "clean": "rimraf dist/ && rimraf test-dist/",
-    "build": "npm run build:source && npm run build:tests",
+    "build": "npm run build:source && npm run build:tests && npm run flow-gen-files",
     "test": "npm run build && node node_modules/mocha/bin/mocha --reporter spec test-dist/*",
     "example": "node example.js"
   },
