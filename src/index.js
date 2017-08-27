@@ -39,3 +39,13 @@ export type StatusResponse = _StatusResponse;
 export type BanListResponse = _BanListResponse;
 export type WhiteListResponse = _WhiteListResponse;
 export type AllData = _AllData;
+
+export default {
+	parseBanListResponseToJs: _parseBanListResponseToJs,
+	parseStatusResponseToJs: _parseStatusResponseToJs,
+	parseWhitelistResponseToJs: _parseWhitelistResponseToJs,
+	sendRCONCommandToServer: _sendRCONCommandToServer,
+	openConnection: _openConnection,
+	sendChainedCommand: _sendChainedCommand,
+	getAllServerData: _getAllServerData
+};
