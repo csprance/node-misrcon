@@ -24,7 +24,7 @@ declare module 'node-misrcon' {
 		ip: string,
 
 		// the port of the server
-		port: number,
+		port: string,
 
 		// the admin password for the server (RCON Password)
 		password: string,
