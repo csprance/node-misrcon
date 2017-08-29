@@ -130,12 +130,14 @@ export const openConnection: Promise<boolean> = _openConnection;
 export const sendChainedCommand: Promise<any> = _sendChainedCommand;
 export const getAllServerData: Promise<AllData> = _getAllServerData;
 
-export default {
-	parseBanListResponseToJs,
-	parseStatusResponseToJs,
-	parseWhitelistResponseToJs,
-	sendRCONCommandToServer,
-	openConnection,
-	sendChainedCommand,
-	getAllServerData
+const misrcon = {
+  parseBanListResponseToJs,
+  parseStatusResponseToJs,
+  parseWhitelistResponseToJs,
+  sendRCONCommandToServer,
+  openConnection,
+  sendChainedCommand,
+  getAllServerData
 };
+
+export default misrcon;
