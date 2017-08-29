@@ -12,7 +12,7 @@ import * as utils from '../utils/utils';
 
 import sendChainedCommand from '../sendChainedCommand/sendChainedCommand';
 
-import type { CommandObject } from '../types';
+import type { CommandObject } from '../index';
 
 // // RCON Steps
 // --- 1 ---
@@ -31,7 +31,7 @@ import type { CommandObject } from '../types';
  *                           {ip:[ip], port:[port], password:[password], command: [command]}
  * @returns{promise} response      returns a promise that resolves to a String
  */
-const sendRCONCommandToServer = (options: CommandObject) => {
+const sendRCONCommandToServer = (options: CommandObject): Promise<any> => {
 	return new Promise((resolve, reject) => {
 		// setup
 		const serverUrl = `http://${options.ip}:${options.port}/rpc2`;

@@ -4,7 +4,7 @@ import Promise from 'bluebird';
 import http from 'http';
 import * as utils from '../utils/utils';
 
-import type { CommandObject } from '../types';
+import type { CommandObject } from '../index';
 
 /**
  * Send a chained command

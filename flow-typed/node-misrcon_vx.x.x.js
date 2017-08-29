@@ -105,22 +105,38 @@ declare module 'node-misrcon' {
 	declare export function getAllServerData(
 	  options: CommandObject
   ): AllData;
+
 	declare export function openConnection(
 		options: CommandObject
 	): Promise<boolean>;
+
 	declare export function parseBanListResponseToJs(
 		res: string
 	): BanListResponse;
+
 	declare export function parseStatusResponseToJs(
 		statusString: string
 	): StatusResponse;
+
 	declare export function parseWhitelistResponseToJs(
 		res: string
 	): WhiteListResponse;
+
 	declare export function sendChainedCommand(
 		options: CommandObject
 	): Promise<any>;
+
 	declare export function sendRCONCommandToServer(
 		options: CommandObject
 	): Promise<any>;
+
+  declare export default {
+    getAllServerData: getAllServerData,
+    openConnection: openConnection,
+    parseBanListResponseToJs: parseBanListResponseToJs,
+    parseStatusResponseToJs: parseStatusResponseToJs,
+    parseWhitelistResponseToJs: parseWhitelistResponseToJs,
+    sendChainedCommand: sendChainedCommand,
+    sendRCONCommandToServer: sendRCONCommandToServer,
+  };
 }

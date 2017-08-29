@@ -10,9 +10,9 @@ import parseStatusResponseToJs from '../parseStatusResponseToJs';
 import parseWhitelistResponseToJs from '../parseWhitelistResponseToJs';
 import parseBanListResponseToJs from '../parseBanListResponseToJs';
 
-import { defaultAllData } from '../types';
+import { defaultAllData } from '../index';
 
-import type { CommandObject, AllData } from '../types';
+import type { CommandObject, AllData } from '../index';
 
 const getAllServerData = (options: CommandObject): Promise<AllData> => {
 	return new Promise((resolve, reject) => {

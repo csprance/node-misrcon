@@ -4,7 +4,8 @@
  * Created by chris on 4/27/2017.
  * Description:
  */
-import type { StatusResponse, ServerStatus, PlayersArray } from '../types';
+import type { StatusResponse, ServerStatus, PlayersArray } from '../index';
+
 /**
  * Parses the response from the rcon command status
  * @param {string} statusString   string with the server response

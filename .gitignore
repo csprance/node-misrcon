@@ -33,3 +33,5 @@ secrets.js
 
 test-dist
 dist
+
+flow-typed/npm

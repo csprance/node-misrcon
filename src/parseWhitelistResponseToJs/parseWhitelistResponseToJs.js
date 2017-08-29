@@ -2,7 +2,7 @@
 /**
  * Parses the response from the rcon command mis_whitelist_status
  */
-import type {WhiteListResponse} from '../types';
+import type { WhiteListResponse } from '../index';
 
 const parseWhitelistResponseToJs = (res: string): WhiteListResponse => {
 	return res

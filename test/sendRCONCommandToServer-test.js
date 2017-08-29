@@ -2,7 +2,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 
 import { expect } from 'chai';
-import * as misrcon from '../dist';
+import misrcon from '../dist/index';
 import { us77, br1, dev } from '../secrets';
 
 // make sure we can hit some endpoints

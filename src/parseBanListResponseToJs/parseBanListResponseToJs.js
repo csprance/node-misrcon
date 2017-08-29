@@ -2,7 +2,7 @@
 /**
  * Parses the response from the rcon command mis_banlist_status
  */
-import type { BanListResponse } from '../types';
+import type { BanListResponse } from '../index';
 
 const parseBanListResponseToJs = (res: string): BanListResponse => {
 	return res
