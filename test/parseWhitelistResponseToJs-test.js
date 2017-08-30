@@ -2,7 +2,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 
 import { expect } from 'chai';
-import misrcon from '../dist/index';
+import misrcon, { ParserError } from '../dist/index';
 import * as mock from './mock-server-responses';
 
 describe('parseWhitelistResponseToJs', () => {
@@ -33,4 +33,12 @@ describe('parseWhitelistResponseToJs', () => {
 		);
 		expect(whitelist.length).to.equal(0);
 	});
+
+  it('should throw ParserError', () => {
+    try {
+      misrcon.parseWhitelistResponseToJs('Some other random String');
+    } catch (e) {
+      expect(e instanceof ParserError).to.equal(true);
+    }
+  });
 });

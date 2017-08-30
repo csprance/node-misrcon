@@ -2,7 +2,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 
 import { expect } from 'chai';
-import misrcon from '../dist/index';
+import misrcon, { ParserError } from '../dist/index';
 import * as mock from './mock-server-responses';
 
 describe('parseStatusResponseToJs', () => {
@@ -60,5 +60,13 @@ describe('parseStatusResponseToJs', () => {
 		expect(status.time).to.equal('14:00');
 		expect(status.players).to.equal('0/50');
 		expect(status.playersArray.length).to.equal(0);
+	});
+
+	it('should throw ParserError', () => {
+		try {
+			misrcon.parseStatusResponseToJs('Some other random String');
+		} catch (e) {
+			expect(e instanceof ParserError).to.equal(true);
+		}
 	});
 });

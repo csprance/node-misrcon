@@ -4,6 +4,7 @@
  * Created by chris on 4/27/2017.
  * Description:
  */
+import { ParserError } from '../index';
 import type { StatusResponse, ServerStatus, PlayersArray } from '../index';
 
 /**
@@ -13,31 +14,34 @@ import type { StatusResponse, ServerStatus, PlayersArray } from '../index';
  * playersArray containing player objects
  */
 const parseStatusResponseToJs = (statusString: string): StatusResponse => {
-	// what the obj will look like when we send it back
-	const player = {
-		steam: '',
-		name: '',
-		entID: '',
-		id: '',
-		ip: '',
-		ping: '',
-		state: '',
-		profile: ''
-	};
-	const retObj = {
-		name: '',
-		ip: '',
-		version: '',
-		level: '',
-		gameRules: '',
-		time: '',
-		players: '',
-		playersArray: [player]
-	};
-	const serverStatusObject = getStatusObjectFromString(statusString);
-	const playersString = getPlayersString(statusString);
-	const playersArray = splitPlayerStringRowsIntoArray(playersString);
-	return { ...retObj, ...serverStatusObject, playersArray };
+    if (!statusString.includes('Server Status:')) {
+      throw new ParserError('Not a Status Response');
+    }
+		// what the obj will look like when we send it back
+		const player = {
+			steam: '',
+			name: '',
+			entID: '',
+			id: '',
+			ip: '',
+			ping: '',
+			state: '',
+			profile: ''
+		};
+		const retObj = {
+			name: '',
+			ip: '',
+			version: '',
+			level: '',
+			gameRules: '',
+			time: '',
+			players: '',
+			playersArray: [player]
+		};
+		const serverStatusObject = getStatusObjectFromString(statusString);
+		const playersString = getPlayersString(statusString);
+		const playersArray = splitPlayerStringRowsIntoArray(playersString);
+		return { ...retObj, ...serverStatusObject, playersArray };
 };
 
 function getStatusObjectFromString(str): ServerStatus {

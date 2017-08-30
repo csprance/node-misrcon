@@ -6,6 +6,7 @@ import _sendRCONCommandToServer from './sendRCONCommandToServer';
 import _openConnection from './openConnection';
 import _sendChainedCommand from './sendChainedCommand';
 import _getAllServerData from './getAllServerData';
+import _tryParseResponse from './tryParseResponse';
 
 // 64 bit steam id
 export type SteamID = string; // 76561198034520139
@@ -87,11 +88,33 @@ export type BanListResponse = Array<SteamID>;
 
 export type WhiteListResponse = Array<SteamID>;
 
+export type TryParseResponse =
+	| {
+			data: WhiteListResponse | StatusResponse | BanListResponse,
+			type: 'whitelist' | 'banlist' | 'status'
+		}
+	| false;
+
 export type AllData = {
 	status: StatusResponse,
 	banlist: BanListResponse,
 	whitelist: WhiteListResponse
 };
+
+// Custom Error Class
+export class ParserError extends Error {
+	name: string;
+	constructor(message: string) {
+		// Calling parent constructor of base Error class.
+		super(message);
+
+		// Capturing stack trace, excluding constructor call from it.
+		Error.captureStackTrace(this, this.constructor);
+
+		// Saving class name in the property of our custom error as a shortcut.
+		this.name = this.constructor.name;
+	}
+}
 
 // Default Values
 export const defaultPlayer: Player = {
@@ -129,15 +152,17 @@ export const sendRCONCommandToServer: Promise<any> = _sendRCONCommandToServer;
 export const openConnection: Promise<boolean> = _openConnection;
 export const sendChainedCommand: Promise<any> = _sendChainedCommand;
 export const getAllServerData: Promise<AllData> = _getAllServerData;
+export const tryParseResponse: TryParseResponse = _tryParseResponse;
 
 const misrcon = {
-  parseBanListResponseToJs,
-  parseStatusResponseToJs,
-  parseWhitelistResponseToJs,
-  sendRCONCommandToServer,
-  openConnection,
-  sendChainedCommand,
-  getAllServerData
+	parseBanListResponseToJs,
+	parseStatusResponseToJs,
+	parseWhitelistResponseToJs,
+	sendRCONCommandToServer,
+	openConnection,
+	sendChainedCommand,
+	getAllServerData,
+	tryParseResponse
 };
 
 export default misrcon;

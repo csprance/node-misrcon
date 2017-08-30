@@ -96,15 +96,20 @@ declare module 'node-misrcon' {
 
 	declare export type WhiteListResponse = Array<SteamID>;
 
+	declare export type TryParseResponse =
+		| {
+				data: WhiteListResponse | StatusResponse | BanListResponse,
+				type: 'whitelist' | 'banlist' | 'status'
+			}
+		| false;
+
 	declare export type AllData = {
 		status: StatusResponse,
 		banlist: BanListResponse,
 		whitelist: WhiteListResponse
 	};
 
-	declare export function getAllServerData(
-	  options: CommandObject
-  ): AllData;
+	declare export function getAllServerData(options: CommandObject): AllData;
 
 	declare export function openConnection(
 		options: CommandObject
@@ -130,13 +135,21 @@ declare module 'node-misrcon' {
 		options: CommandObject
 	): Promise<any>;
 
-  declare export default {
-    getAllServerData: getAllServerData,
-    openConnection: openConnection,
-    parseBanListResponseToJs: parseBanListResponseToJs,
-    parseStatusResponseToJs: parseStatusResponseToJs,
-    parseWhitelistResponseToJs: parseWhitelistResponseToJs,
-    sendChainedCommand: sendChainedCommand,
-    sendRCONCommandToServer: sendRCONCommandToServer,
-  };
+	declare export function tryParseResponse(response: string): TryParseResponse;
+
+	declare export class ParserError {
+		constructor(message: string): ParserError,
+		name: string
+	}
+
+	declare export default {
+		getAllServerData: getAllServerData,
+		openConnection: openConnection,
+		parseBanListResponseToJs: parseBanListResponseToJs,
+		parseStatusResponseToJs: parseStatusResponseToJs,
+		parseWhitelistResponseToJs: parseWhitelistResponseToJs,
+		sendChainedCommand: sendChainedCommand,
+		sendRCONCommandToServer: sendRCONCommandToServer,
+		tryParseResponse: tryParseResponse
+	}
 }

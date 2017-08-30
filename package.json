@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "author": "Chris Sprance",
   "main": "dist/index.js",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
@@ -23,6 +23,7 @@
     "clean": "rimraf dist/ && rimraf test-dist/",
     "build": "npm run build:source && npm run build:tests && npm run flow-gen-files",
     "test": "npm run build && node node_modules/mocha/bin/mocha --reporter spec test-dist/*",
+    "test-parsers": "npm run build && node node_modules/mocha/bin/mocha --reporter spec test-dist/parse*",
     "example": "node example.js"
   },
   "repository": {
@@ -66,6 +67,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "babel-register": "^6.26.0",
     "bluebird": "^3.5.0",
     "md5": "^2.2.1",
     "xml2js": "^0.4.17"
