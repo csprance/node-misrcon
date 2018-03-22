@@ -1,8 +1,22 @@
 {
-  "presets": ["flow", "es2015", "stage-0"],
+  "presets": [
+    "flow",
+    "es2015",
+    "stage-0"
+  ],
   "plugins": [
-    ["babel-plugin-transform-builtin-extend", {
-      "globals": ["Error", "Array"]
-    }]
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
+    [
+      "babel-plugin-transform-builtin-extend",
+      {
+        "globals": [
+          "Error",
+          "Array"
+        ]
+      }
+    ]
   ]
 }

@@ -28,11 +28,11 @@ describe('parseBanlistResponseToJs', () => {
 		expect(banlist.length).to.equal(0);
 	});
 
-  it('should throw ParserError', () => {
-    try {
-      misrcon.parseBanListResponseToJs('Some other random String');
-    } catch (e) {
-      expect(e instanceof ParserError).to.equal(true);
-    }
-  });
+	it('should throw ParserError', () => {
+		try {
+			misrcon.parseBanListResponseToJs('Some other random String');
+		} catch (e) {
+			expect(e instanceof ParserError).to.equal(true);
+		}
+	});
 });

@@ -14,33 +14,33 @@ import { defaultAllData } from '../index';
 
 import type { CommandObject, AllData } from '../index';
 
-const getAllServerData = (options: CommandObject): Promise<AllData> => {
-	return new Promise((resolve, reject) => {
-		const retVal = defaultAllData;
+const getAllServerData = async (options: CommandObject): Promise<AllData> => {
+  try {
+    // Get status response
+    const serverStatusString = await sendRCONCommandToServer({
+      ...options,
+      command: 'status'
+    });
+    const status = parseStatusResponseToJs(serverStatusString);
 
-		sendRCONCommandToServer({ ...options, command: 'status' })
-			.then(serverStatusString => {
-				retVal.status = parseStatusResponseToJs(serverStatusString);
-				return sendRCONCommandToServer({
-					...options,
-					command: 'mis_ban_status'
-				});
-			})
-			.then(banStatusString => {
-				retVal.banlist = parseBanListResponseToJs(banStatusString);
-				return sendRCONCommandToServer({
-					...options,
-					command: 'mis_whitelist_status'
-				});
-			})
-			.then(whitelistStatusString => {
-				retVal.whitelist = parseWhitelistResponseToJs(whitelistStatusString);
-				resolve(retVal);
-			})
-			.catch(e => {
-				reject(e);
-			});
-	});
+    // Get ban list
+    const banStatusString = await sendRCONCommandToServer({
+      ...options,
+      command: 'mis_ban_status'
+    });
+    const banlist = parseBanListResponseToJs(banStatusString);
+
+    // get whitelist
+    const whitelistStatusString = await sendRCONCommandToServer({
+      ...options,
+      command: 'mis_whitelist_status'
+    });
+    const whitelist = parseWhitelistResponseToJs(whitelistStatusString);
+
+    return { ...defaultAllData, status, banlist, whitelist };
+  } catch (e) {
+    throw e;
+  }
 };
 
 export default getAllServerData;

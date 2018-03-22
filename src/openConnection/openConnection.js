@@ -38,7 +38,7 @@ export const openConnection = (options: CommandObject): Promise<boolean> => {
 			})
 			.then(res => {
 				// Response: AuthResponse
-				if (utils.parseAuthResponse(res.data, reject)) {
+				if (utils.parseAuthResponse(res.data)) {
 					resolve(true);
 				}
 			})

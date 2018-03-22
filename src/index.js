@@ -4,7 +4,6 @@ import _parseStatusResponseToJs from './parseStatusResponseToJs';
 import _parseWhitelistResponseToJs from './parseWhitelistResponseToJs';
 import _sendRCONCommandToServer from './sendRCONCommandToServer';
 import _openConnection from './openConnection';
-import _sendChainedCommand from './sendChainedCommand';
 import _getAllServerData from './getAllServerData';
 import _tryParseResponse from './tryParseResponse';
 
@@ -144,13 +143,12 @@ export const defaultAllData: AllData = {
 	banlist: [''],
 	whitelist: ['']
 };
-
+export const DEFAULT_TIMEOUT = 10000; // 10 seconds
 export const parseBanListResponseToJs: BanListResponse = _parseBanListResponseToJs;
 export const parseStatusResponseToJs: StatusResponse = _parseStatusResponseToJs;
 export const parseWhitelistResponseToJs: WhiteListResponse = _parseWhitelistResponseToJs;
 export const sendRCONCommandToServer: Promise<any> = _sendRCONCommandToServer;
 export const openConnection: Promise<boolean> = _openConnection;
-export const sendChainedCommand: Promise<any> = _sendChainedCommand;
 export const getAllServerData: Promise<AllData> = _getAllServerData;
 export const tryParseResponse: TryParseResponse = _tryParseResponse;
 
@@ -160,7 +158,6 @@ const misrcon = {
 	parseWhitelistResponseToJs,
 	sendRCONCommandToServer,
 	openConnection,
-	sendChainedCommand,
 	getAllServerData,
 	tryParseResponse
 };
