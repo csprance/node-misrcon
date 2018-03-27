@@ -1,20 +1,19 @@
-// @flow
 /**
  * Name: getAllServerData
  * Created by chris on 4/30/2017.
  * Description:
  */
 
-import sendRCONCommandToServer from '../sendRCONCommandToServer';
+import parseBanListResponseToJs from '../parseBanListResponseToJs';
 import parseStatusResponseToJs from '../parseStatusResponseToJs';
 import parseWhitelistResponseToJs from '../parseWhitelistResponseToJs';
-import parseBanListResponseToJs from '../parseBanListResponseToJs';
+import sendRCONCommandToServer from '../sendRCONCommandToServer';
 
 import { defaultAllData } from '../index';
 
-import type { CommandObject, AllData } from '../index';
+import { IAllData, ICommandObject } from '../index';
 
-const getAllServerData = async (options: CommandObject): Promise<AllData> => {
+const getAllServerData = async (options: ICommandObject): Promise<IAllData> => {
   try {
     // Get status response
     const serverStatusString = await sendRCONCommandToServer({

@@ -1,4 +1,3 @@
-// @flow
 /**
  * Name: sendRCONCommandToServer
  * Created by chris on 4/26/2017.
@@ -6,10 +5,10 @@
  */
 
 import axios from 'axios';
-import http from 'http';
+import * as http from 'http';
 import * as utils from '../utils/utils';
 
-import type { CommandObject } from '../index';
+import { ICommandObject } from '../index';
 import { DEFAULT_TIMEOUT } from '../index';
 
 // // RCON Steps
@@ -31,7 +30,7 @@ import { DEFAULT_TIMEOUT } from '../index';
  * @returns{promise} response      returns a promise that resolves to a String
  */
 const sendRCONCommandToServer = async (
-  options: CommandObject,
+  options: ICommandObject,
   timeout: number = DEFAULT_TIMEOUT
 ): Promise<any> => {
   try {
@@ -42,13 +41,12 @@ const sendRCONCommandToServer = async (
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
     const axiosConfig = {
+      cancelToken: source.token,
       headers: { 'Content-Type': 'text/xml' },
-      timeout,
       httpAgent: new http.Agent({ keepAlive: true }),
-      cancelToken: source.token
+      timeout
     };
 
-    // eslint-disable-next-line no-underscore-dangle
     const _axios = axios.create(axiosConfig);
 
     // it's business time girl!!

@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.6.1",
+  "version": "0.7.1",
   "author": "Chris Sprance",
   "main": "dist/index.js",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
@@ -10,22 +10,24 @@
       "email": "chrissprance@gmail.com"
     }
   ],
+  "jest": {
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
+  },
   "scripts": {
-    "watch:source": "rimraf dist/ && babel src/ --watch --out-dir dist/",
-    "watch:tests": "rimraf test-dist/ && babel test/ --watch --out-dir test-dist/",
-    "dev": "gulp watch",
     "prebublish": "npm run build",
-    "lint": "eslint src test",
-    "flow": "flow status",
-    "flow-gen-files": "flow gen-flow-files ./src/index.js > ./dist/index.js.flow",
-    "build:source": "rimraf dist/ && babel src/ --out-dir dist/",
-    "build:tests": "rimraf test-dist/ && babel test/ --out-dir test-dist/",
-    "clean": "rimraf dist/ && rimraf test-dist/",
-    "build": "npm run build:source && npm run build:tests",
-    "build-min": "node tools/build",
-    "test": "npm run build && node node_modules/mocha/bin/mocha --reporter spec test-dist/*",
-    "test-parsers": "npm run build && node node_modules/mocha/bin/mocha --reporter spec test-dist/parse*",
-    "example": "node example.js"
+    "repl": "ts-node ./repl.js",
+    "test": "jest",
+    "clean": "rimraf -rf ./dist",
+    "build": "npm run clean && tsc"
   },
   "repository": {
     "type": "git",
@@ -36,48 +38,17 @@
     "rcon",
     "misrcon"
   ],
-  "babel": {
-    "presets": [
-      "flow",
-      "es2015",
-      {
-        "modules": false
-      },
-      "stage-0"
-    ],
-    "plugins": [
-      "external-helpers"
-    ]
-  },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "6.16.0",
-    "babel-eslint": "7.0.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-runtime": "6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-stage-0": "6.24.1",
-    "babel-register": "^6.26.0",
-    "chai": "3.5.0",
-    "eslint": "3.6.1",
-    "eslint-config-airbnb": "12.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "2.2.2",
-    "eslint-plugin-react": "6.3.0",
-    "flow-bin": "^0.52.0",
-    "gulp": "3.9.1",
-    "gulp-babel": "6.1.2",
-    "gulp-eslint": "3.0.1",
-    "gulp-mocha": "3.0.1",
-    "gulp-rimraf": "0.2.0",
-    "mocha": "3.1.0",
-    "rimraf": "2.5.4",
-    "rollup": "^0.49.3",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-flow": "^1.1.1",
-    "rollup-plugin-uglify": "^2.0.1",
-    "run-sequence": "1.2.2"
+    "@types/jest": "22.2.2",
+    "@types/md5": "2.1.32",
+    "@types/node": "9.6.0",
+    "@types/xml2js": "0.4.2",
+    "jest": "22.4.3",
+    "rimraf": "2.6.2",
+    "ts-jest": "22.4.2",
+    "ts-node": "5.0.1",
+    "tslint": "5.9.1",
+    "typescript": "2.7.2"
   },
   "engine": "node >= 0.10.x",
   "homepage": "https://github.com/csprance/node-misrcon",
@@ -88,8 +59,6 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "bluebird": "^3.5.0",
     "md5": "^2.2.1",
     "xml2js": "^0.4.17"
   }
