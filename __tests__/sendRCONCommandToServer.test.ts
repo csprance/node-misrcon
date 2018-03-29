@@ -10,10 +10,10 @@ describe('sendRCONCommandToServer', () => {
     expect(typeof results).toEqual('string');
   });
 
-  it('dev status and parser', async () => {
+  it('us77 status and parser', async () => {
     expect.assertions(1);
-    const results = await misrcon.sendRCONCommandToServer(dev);
-    expect(misrcon.parseStatusResponseToJs(results).name).toEqual('Dev Server');
+    const results = await misrcon.sendRCONCommandToServer(us77);
+    expect(misrcon.parseStatusResponseToJs(results).name).toEqual('Official Miscreated - i3D.net - US77 #2008');
   });
 
   it('br1 status', async () => {
