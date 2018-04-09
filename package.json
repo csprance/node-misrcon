@@ -1,66 +1,114 @@
 {
   "name": "node-misrcon",
-  "version": "0.7.3",
-  "author": "Chris Sprance",
-  "main": "./dist/index.js",
-  "types": "./index.d.ts",
+  "version": "0.7.9",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
-  "contributors": [
-    {
-      "name": "Chris Sprance",
-      "email": "chrissprance@gmail.com"
-    }
-  ],
-  "jest": {
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
-  },
-  "scripts": {
-    "prebublish": "npm run jest && npm run build",
-    "repl": "ts-node ./repl.js",
-    "test": "jest",
-    "clean": "rimraf -rf ./dist",
-    "build": "npm run clean && tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/csprance/node-misrcon.git"
-  },
   "keywords": [
     "miscreated",
     "rcon",
     "misrcon"
   ],
-  "devDependencies": {
-    "@types/jest": "22.2.2",
-    "@types/md5": "2.1.32",
-    "@types/node": "9.6.0",
-    "@types/xml2js": "0.4.2",
-    "jest": "22.4.3",
-    "rimraf": "2.6.2",
-    "ts-jest": "22.4.2",
-    "ts-node": "5.0.1",
-    "tslint": "5.9.1",
-    "typescript": "2.7.2"
+  "main": "dist/lib/node-misrcon.js",
+  "typings": "dist/types/node-misrcon.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": "Chris Sprance <chrissprance@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/csprance/node-misrcon.git"
   },
-  "engine": "node >= 0.10.x",
-  "homepage": "https://github.com/csprance/node-misrcon",
-  "bugs": {
-    "url": "https://github.com/csprance/node-misrcon/issues"
-  },
-  "private": false,
   "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build": "tsc --module commonjs && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "start": "rollup -c rollup.config.ts -w",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release",
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+    "precommit": "lint-staged",
+    "prepush": "npm run test:prod && npm run build",
+    "commitmsg": "validate-commit-msg"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write --no-semi --single-quote",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
+    }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    },
+    "collectCoverage": true
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.2",
+    "@types/md5": "^2.1.32",
+    "@types/node": "^9.6.2",
+    "@types/xml2js": "^0.4.2",
+    "colors": "^1.1.2",
+    "commitizen": "^2.9.6",
+    "coveralls": "^3.0.0",
+    "cross-env": "^5.0.1",
+    "cz-conventional-changelog": "^2.0.0",
+    "husky": "^0.14.0",
+    "jest": "^22.0.2",
+    "lint-staged": "^7.0.0",
+    "lodash.camelcase": "^4.3.0",
+    "prettier": "^1.4.4",
+    "prompt": "^1.0.0",
+    "replace-in-file": "^3.0.0-beta.2",
+    "rimraf": "^2.6.1",
+    "semantic-release": "^15.1.5",
+    "ts-jest": "^22.0.0",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.8.0",
+    "tslint-config-prettier": "^1.1.0",
+    "tslint-config-standard": "^7.0.0",
+    "typedoc": "^0.11.0",
+    "typescript": "^2.6.2",
+    "validate-commit-msg": "^2.12.2"
+  },
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.18.0",
     "md5": "^2.2.1",
-    "xml2js": "^0.4.17"
+    "xml2js": "^0.4.19"
   }
 }
