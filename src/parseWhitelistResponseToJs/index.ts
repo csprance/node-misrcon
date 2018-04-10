@@ -1,12 +1,12 @@
 /**
  * Parses the response from the rcon command mis_whitelist_status
  */
-import { ParserError } from '../node-misrcon'
-import { WhiteListResponse } from '../types'
+import { ParserError } from '../node-misrcon';
+import { WhiteListResponse } from '../types';
 
 export default function parseWhitelistResponseToJs(res: string): WhiteListResponse {
   if (!res.includes('Whitelisted players : ')) {
-    throw new ParserError('Not a whitelist')
+    throw new ParserError('Not a whitelist');
   }
   return res
     .split('-----------------------------------------')[1]
@@ -17,5 +17,5 @@ export default function parseWhitelistResponseToJs(res: string): WhiteListRespon
     .split(' ')
     .filter(x => x !== 'SteamID:')
     .filter(x => x !== '0')
-    .filter(x => x !== '')
+    .filter(x => x !== '');
 }
