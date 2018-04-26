@@ -82,6 +82,7 @@ export default async function sendRCONCommandToServer(
       return utils.parseCommandResponse(rconResult.data);
     }
   } catch (e) {
+    console.log(e);
     return 'Failed';
   }
   return 'Authentication Error';

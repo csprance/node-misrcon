@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.7.9",
+  "version": "0.7.10",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
   "keywords": [
     "miscreated",
@@ -39,15 +39,6 @@
       "git add"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    },
-    "validate-commit-msg": {
-      "types": "conventional-commit-types",
-      "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
-    }
-  },
   "jest": {
     "testEnvironment": "node",
     "transform": {
@@ -79,11 +70,8 @@
     "@types/node": "^9.6.2",
     "@types/xml2js": "^0.4.2",
     "colors": "^1.1.2",
-    "commitizen": "^2.9.6",
     "coveralls": "^3.0.0",
     "cross-env": "^5.0.1",
-    "cz-conventional-changelog": "^2.0.0",
-    "husky": "^0.14.0",
     "jest": "^22.0.2",
     "lint-staged": "^7.0.0",
     "lodash.camelcase": "^4.3.0",
