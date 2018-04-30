@@ -4,8 +4,10 @@
  * Description:
  */
 import { AxiosResponse } from 'axios';
-import md5 from 'md5';
+import * as crypto from 'crypto';
 import { parseString } from 'xml2js';
+
+const md5 = (contents: string) => crypto.createHash('md5').update(contents).digest("hex");
 
 export function createChallengeString(): string {
   return '<methodCall><methodName>challenge</methodName><params></params></methodCall>';
