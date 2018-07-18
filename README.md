@@ -19,19 +19,20 @@
 * send the command and creds and then parse the promise callback which will resolve to a string using `sendRconCommandToServer`
 * some utility functions to parse the various commands also exist but are wip and may break each update
   * `parseStatusResponseToJs` 
+  * `parseSysInfoPQM`
+  * `parseSysInfoStats`
   * `parseBanListResponseToJs` 
   * `parseWhitelistResponseToJs`
   * `getAllServerData`
 
-```js
-const misrcon = 'node-misrcon';
+```ts
+import * as misrcon from 'node-misrcon';
 
-misrcon.sendRCONCommandToServer({port: "81810", password: "rconPassword", ip: "192.168.1.1", command: "status"})
-.then(function (res) {
-  // Parse the status response
-  console.log(misrcon.parseStatusResponseToJs(res));
-});
+// es6 async/await
+const results = await misrcon.sendRCONCommandToServer({port: "81810", password: "rconPassword", ip: "192.168.1.1", command: "status"})
+console.log(misrcon.parseStatusResponseToJs(results));
 
+// Promises
 misrcon.sendRCONCommandToServer({port: "81810", password: "rconPassword", ip: "192.168.1.1", command: "mis_ban_status"})
 .then(function (res) {
   // parse a ban list response

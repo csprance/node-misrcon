@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "0.7.13",
+  "version": "0.7.14",
   "description": "package that contains functions to send rcon commands to miscreated game servers",
   "keywords": [
     "miscreated",
@@ -44,7 +44,7 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(/test/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -65,6 +65,7 @@
     "collectCoverage": true
   },
   "devDependencies": {
+    "@types/camelcase": "^4.1.0",
     "@types/jest": "^22.2.2",
     "@types/md5": "^2.1.32",
     "@types/node": "^9.6.2",
@@ -91,6 +92,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "camelcase": "^5.0.0",
     "md5": "^2.2.1",
     "xml2js": "^0.4.19"
   }

@@ -1,12 +1,16 @@
 import getAllServerData from './getAllServerData';
 import openConnection from './openConnection';
 import parseBanListResponseToJs from './parseBanListResponseToJs';
+import parseSysInfoStats from './parseSysInfoStats';
+import parseSysInfoPQM from './parseSysInfoPQM';
 import parseStatusResponseToJs from './parseStatusResponseToJs';
 import parseWhitelistResponseToJs from './parseWhitelistResponseToJs';
 import sendRCONCommandToServer from './sendRCONCommandToServer';
 import tryParseResponse from './tryParseResponse';
 import { IAllData, ICommandObject, IPlayer, StatusResponse } from './types';
 
+export { default as parseSysInfoStats } from './parseSysInfoStats';
+export { default as parseSysInfoPQM } from './parseSysInfoPQM';
 export { default as parseBanListResponseToJs } from './parseBanListResponseToJs';
 export { default as parseStatusResponseToJs } from './parseStatusResponseToJs';
 export { default as parseWhitelistResponseToJs } from './parseWhitelistResponseToJs';
@@ -60,5 +64,7 @@ export default {
   parseStatusResponseToJs,
   parseWhitelistResponseToJs,
   sendRCONCommandToServer,
-  tryParseResponse
+  tryParseResponse,
+  parseSysInfoStats,
+  parseSysInfoPQM
 };

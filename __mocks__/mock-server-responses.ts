@@ -134,3 +134,13 @@ Whitelisted players :
 SteamID: 76561198034520132
 -----------------------------------------
 `;
+
+export const sysInfoStats = `upd: 9.2ms (7.82..10.89), rate: 32.1/s, up: 354.2k, dn: 195.8k, tvm: 39412342784, vmu: 19864850432, tpm: 34312069120, pmu: 19557490688`;
+
+export const sysInfoStatsDev = `[CONSOLE] Executing console command 'sysinfo stats'
+upd: 2.5ms (2.37..3.28), rate: 32.0/sfps, up: 0.0kbps, dn: 0.0kbps, tvm: 11844MB, vmu: 5196MB, tpm: 8181MB, pmu: 4930MB`;
+
+export const sysInfoPQM = `PQM: Requests - queue size: 0, avg response: 13719.4375; Invokes - queue size: 0, avg response: 13719.7090, PCM: queue size: 0`;
+
+export const sysInfoPQMDev = `[CONSOLE] Executing console command 'sysinfo pqm'
+PQM: Requests - queue size: 0, avg response: 0.0405; Invokes - queue size: 0, avg response: 0.0415, PCM: queue size: 0`;

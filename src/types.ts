@@ -83,3 +83,30 @@ export interface ICommandObject {
   // the actual RCON command string you want to send
   command: string;
 }
+
+export interface ISysInfoStats {
+  upd: string;
+  rate: string;
+  up: string;
+  dn: string;
+  tvm: string;
+  vmu: string;
+  tpm: string;
+  pmu: string;
+}
+
+export interface ISysInfoPQM {
+  pqm: {
+    requests: {
+      queueSize: string;
+      avgResponse: string;
+    }
+    invokes: {
+      queueSize: string;
+      avgResponse: string;
+    };
+  };
+  pcm: {
+    queueSize: string;
+  };
+}

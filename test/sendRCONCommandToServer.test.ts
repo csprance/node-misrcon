@@ -23,6 +23,12 @@ describe('sendRCONCommandToServer', () => {
     const results = await misrcon.sendRCONCommandToServer(br1);
     expect(typeof results).toEqual('string');
   });
+
+  it('Should have a bad password', async () => {
+    expect.assertions(1);
+    const results = await misrcon.sendRCONCommandToServer({ ...br1, password: 'badPassword' });
+    expect(results).toEqual('Incorrect Password');
+  });
 });
 
 // make sure we can hit some endpoints again
