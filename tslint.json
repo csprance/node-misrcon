@@ -5,6 +5,7 @@
   ],
   "rules": {
     "no-control-regex": false,
-    "semicolon": true
+    "semicolon": false,
+    "no-return-await": false
   }
 }

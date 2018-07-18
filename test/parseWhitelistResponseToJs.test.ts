@@ -1,33 +1,33 @@
 /* global it, describe, before, after */
 import * as mock from '../__mocks__/mock-server-responses';
-import misrcon, { ParserError } from '../src/node-misrcon';
+import * as misrcon from '../src/node-misrcon';
 
-describe('parseWhitelistResponseToJs', () => {
+describe('parseWhitelist', () => {
   it('whitelist with players', () => {
-    const whitelist = misrcon.parseWhitelistResponseToJs(mock.whitelistWPlayers);
+    const whitelist = misrcon.parseWhitelist(mock.whitelistWPlayers);
     expect(whitelist.length).toEqual(1);
   });
 
   it('whitelist with no players', () => {
-    const whitelist = misrcon.parseWhitelistResponseToJs(mock.whitelistNoPlayers);
+    const whitelist = misrcon.parseWhitelist(mock.whitelistNoPlayers);
     expect(whitelist.length).toEqual(0);
   });
 
   it('dev whitelist with players', () => {
-    const whitelist = misrcon.parseWhitelistResponseToJs(mock.whitelistWPlayersDev);
+    const whitelist = misrcon.parseWhitelist(mock.whitelistWPlayersDev);
     expect(whitelist.length).toEqual(1);
   });
 
   it('dev whitelist with no players', () => {
-    const whitelist = misrcon.parseWhitelistResponseToJs(mock.whitelistNoPlayersDev);
+    const whitelist = misrcon.parseWhitelist(mock.whitelistNoPlayersDev);
     expect(whitelist.length).toEqual(0);
   });
 
   it('should throw ParserError', () => {
     try {
-      misrcon.parseWhitelistResponseToJs('Some other random String');
+      misrcon.parseWhitelist('Some other random String');
     } catch (e) {
-      expect(e instanceof ParserError).toEqual(true);
+      expect(e instanceof misrcon.ParserError).toEqual(true);
     }
   });
 });

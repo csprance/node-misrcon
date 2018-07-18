@@ -5,7 +5,7 @@
 import { ParserError } from '../node-misrcon';
 import { ISysInfoStats } from '../types';
 
-export default function parseSysInfoStats(response: string): ISysInfoStats {
+export default (response: string): ISysInfoStats => {
   try {
     return response
       .replace("[CONSOLE] Executing console command 'sysinfo stats'", '')
@@ -18,6 +18,6 @@ export default function parseSysInfoStats(response: string): ISysInfoStats {
       })
       .reduce((acc, curVal) => ({ ...acc, ...curVal }), {} as ISysInfoStats);
   } catch (e) {
-    throw new ParserError('Not a sysinfo pqm response');
+    throw new ParserError('Not a SysInfo Stats Response');
   }
-}
+};

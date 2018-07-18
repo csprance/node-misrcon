@@ -1,10 +1,10 @@
 /* global it, describe, before, after */
 import * as mock from '../__mocks__/mock-server-responses';
-import misrcon, { ParserError } from '../src/node-misrcon';
+import * as misrcon from '../src/node-misrcon';
 
-describe('parseStatusResponseToJs', () => {
+describe('parseStatus', () => {
   it('status with players', () => {
-    const status = misrcon.parseStatusResponseToJs(mock.statusWPlayers);
+    const status = misrcon.parseStatus(mock.statusWPlayers);
     expect(status.name).toEqual('Official Miscreated - i3D.net - US77 #2008');
     expect(status.ip).toEqual('Server50425');
     expect(status.version).toEqual('0.1.1.1892');
@@ -24,7 +24,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('status with no players', () => {
-    const status = misrcon.parseStatusResponseToJs(mock.statusNoPlayers);
+    const status = misrcon.parseStatus(mock.statusNoPlayers);
     expect(status.name).toEqual('Official Miscreated - i3D.net - US77 #2008');
     expect(status.ip).toEqual('Server50425');
     expect(status.version).toEqual('0.1.1.1892');
@@ -36,7 +36,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('dev status with players', () => {
-    const status = misrcon.parseStatusResponseToJs(mock.statusWPlayersDev);
+    const status = misrcon.parseStatus(mock.statusWPlayersDev);
     expect(status.name).toEqual('Dev Server');
     expect(status.ip).toEqual('Server10243');
     expect(status.version).toEqual('0.1.1.1892');
@@ -48,7 +48,7 @@ describe('parseStatusResponseToJs', () => {
   });
 
   it('dev status with no players', () => {
-    const status = misrcon.parseStatusResponseToJs(mock.statusNoPlayersDev);
+    const status = misrcon.parseStatus(mock.statusNoPlayersDev);
     expect(status.name).toEqual('Dev Server');
     expect(status.ip).toEqual('Server10243');
     expect(status.version).toEqual('0.1.1.1892');
@@ -61,9 +61,9 @@ describe('parseStatusResponseToJs', () => {
 
   it('should throw ParserError', () => {
     try {
-      misrcon.parseStatusResponseToJs('Some other random String');
+      misrcon.parseStatus('Some other random String');
     } catch (e) {
-      expect(e instanceof ParserError).toEqual(true);
+      expect(e instanceof misrcon.ParserError).toEqual(true);
     }
   });
 });

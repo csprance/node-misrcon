@@ -52,7 +52,7 @@ export type BanListResponse = SteamID[];
 
 export type WhiteListResponse = SteamID[];
 
-export type TryParseResponse =
+export type ParseResponse =
   | {
       data: StatusResponse;
       type: 'status';
@@ -65,21 +65,40 @@ export type TryParseResponse =
       data: WhiteListResponse;
       type: 'whitelist';
     }
+  | {
+      data: ISysInfoPQM;
+      type: 'sysinfo pqm';
+    }
+  | {
+      data: ISysInfoStats;
+      type: 'sysinfo stats';
+    }
   | false;
+
+export type Parsed =
+  | StatusResponse
+  | BanListResponse
+  | WhiteListResponse
+  | ISysInfoPQM
+  | ISysInfoStats
+  | string;
 
 export interface IAllData {
   status: StatusResponse;
   banlist: BanListResponse;
   whitelist: WhiteListResponse;
+  stats: ISysInfoStats;
+  pqm: ISysInfoPQM;
 }
-
-export interface ICommandObject {
+export interface ICredentials {
   // The ip for the Server you're sending the request to
   ip: string;
   // the port of the server
   port: string;
   // the admin password for the server (RCON Password)
   password: string;
+}
+export interface ICommandObject extends ICredentials {
   // the actual RCON command string you want to send
   command: string;
 }
@@ -100,7 +119,7 @@ export interface ISysInfoPQM {
     requests: {
       queueSize: string;
       avgResponse: string;
-    }
+    };
     invokes: {
       queueSize: string;
       avgResponse: string;

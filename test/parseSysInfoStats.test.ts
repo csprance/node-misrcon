@@ -1,6 +1,6 @@
 /* global it, describe, before, after */
 import * as mock from '../__mocks__/mock-server-responses';
-import misrcon, { ParserError } from '../src/node-misrcon';
+import * as misrcon from '../src/node-misrcon';
 
 describe('parseSysInfoStats', () => {
   it('sysinfo stats live', () => {
@@ -16,7 +16,7 @@ describe('parseSysInfoStats', () => {
     try {
       misrcon.parseSysInfoStats('Some other random String');
     } catch (e) {
-      expect(e instanceof ParserError).toEqual(true);
+      expect(e instanceof misrcon.ParserError).toEqual(true);
     }
   });
 });

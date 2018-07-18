@@ -1,6 +1,6 @@
 /* global it, describe, before, after */
 import { br1, dev, us77 } from '../secrets';
-import misrcon from '../src/node-misrcon';
+import * as misrcon from '../src/node-misrcon';
 
 // make sure we can hit some endpoints
 describe('sendRCONCommandToServer', () => {
@@ -13,7 +13,7 @@ describe('sendRCONCommandToServer', () => {
   it('us77 status and parser', async () => {
     expect.assertions(1);
     const results = await misrcon.sendRCONCommandToServer(us77);
-    expect(misrcon.parseStatusResponseToJs(results).name).toEqual(
+    expect(misrcon.parseStatus(results).name).toEqual(
       'Official Miscreated - i3D.net - US77 #2008'
     );
   });

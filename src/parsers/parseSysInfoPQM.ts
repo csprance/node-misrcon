@@ -6,7 +6,7 @@ import camelCase from 'camelcase';
 import { ParserError } from '../node-misrcon';
 import { ISysInfoPQM } from '../types';
 
-export default function parseSysInfoPQM(response: string): ISysInfoPQM {
+export default (response: string): ISysInfoPQM => {
   try {
     const [pqm, pcm] = response
       .replace("[CONSOLE] Executing console command 'sysinfo pqm'", '')
@@ -32,9 +32,9 @@ export default function parseSysInfoPQM(response: string): ISysInfoPQM {
       }
     } as ISysInfoPQM;
   } catch (e) {
-    throw new ParserError('Not a PQM response');
+    throw new ParserError('Not a SysInfo PQM response');
   }
-}
+};
 const splitToKeys = (val: string[]) =>
   val.reduce((acc, curVal) => {
     const splitVal = curVal.split(':');
