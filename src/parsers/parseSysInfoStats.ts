@@ -6,6 +6,7 @@ import { ParserError } from '../node-misrcon';
 import { ISysInfoStats } from '../types';
 
 export default (response: string): ISysInfoStats => {
+  if (!response.includes('upd: ')) throw new ParserError('Not a SysInfo Stats Response');
   try {
     return response
       .replace("[CONSOLE] Executing console command 'sysinfo stats'", '')

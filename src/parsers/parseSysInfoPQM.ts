@@ -2,11 +2,21 @@
  * Name: parseSysInfoPQM
  * Description:
  */
-import camelCase from 'camelcase';
 import { ParserError } from '../node-misrcon';
 import { ISysInfoPQM } from '../types';
+import { camelCase } from '../utils/utils';
+
+const splitToKeys = (val: string[]) =>
+  val.reduce((acc, curVal) => {
+    const splitVal = curVal.split(':');
+    return {
+      ...acc,
+      [camelCase(splitVal[0].trim())]: splitVal[1].trim()
+    };
+  }, {});
 
 export default (response: string): ISysInfoPQM => {
+  if (!response.includes('PQM: Requests -')) throw new ParserError('Not a SysInfo PQM response');
   try {
     const [pqm, pcm] = response
       .replace("[CONSOLE] Executing console command 'sysinfo pqm'", '')
@@ -32,14 +42,7 @@ export default (response: string): ISysInfoPQM => {
       }
     } as ISysInfoPQM;
   } catch (e) {
+    console.log(e);
     throw new ParserError('Not a SysInfo PQM response');
   }
 };
-const splitToKeys = (val: string[]) =>
-  val.reduce((acc, curVal) => {
-    const splitVal = curVal.split(':');
-    return {
-      ...acc,
-      [camelCase(splitVal[0].trim())]: splitVal[1].trim()
-    };
-  }, {});

@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "node module that contains functions to send rcon commands to miscreated game servers",
   "keywords": [
     "miscreated",
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && npm run test:prod",
     "build": "tsc --module commonjs && typedoc --out docs --target es6 --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
