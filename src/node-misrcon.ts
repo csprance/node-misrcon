@@ -1,10 +1,12 @@
+import sendRCONCommandToServer from './sendRCONCommandToServer';
 import getAllServerData from './getAllServerData';
 import parseBanList from './parsers/parseBanList';
 import parseSysInfoStats from './parsers/parseSysInfoStats';
 import parseSysInfoPQM from './parsers/parseSysInfoPQM';
 import parseStatus from './parsers/parseStatus';
 import parseWhitelist from './parsers/parseWhitelist';
-import sendRCONCommandToServer from './sendRCONCommandToServer';
+import parseResponse from './parsers';
+
 import {
   IAllData,
   ICredentials,
@@ -16,7 +18,6 @@ import {
   ISysInfoPQM,
   Parsed
 } from './types';
-import parseResponse from './parsers';
 
 export { default as parseSysInfoStats } from './parsers/parseSysInfoStats';
 export { default as parseSysInfoPQM } from './parsers/parseSysInfoPQM';
@@ -93,7 +94,7 @@ export const defaultAllData: IAllData = {
 };
 export const DEFAULT_TIMEOUT = 10000; // 10 seconds
 
-export default class NodeMisrcon {
+export class NodeMisrcon {
   private readonly credentials: ICredentials;
 
   constructor(credentials: ICredentials) {
@@ -157,3 +158,15 @@ export default class NodeMisrcon {
     );
   };
 }
+
+export default {
+  NodeMisrcon,
+  sendRCONCommandToServer,
+  getAllServerData,
+  parseBanList,
+  parseSysInfoStats,
+  parseSysInfoPQM,
+  parseStatus,
+  parseWhitelist,
+  parseResponse
+};
