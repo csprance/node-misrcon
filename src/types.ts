@@ -104,6 +104,8 @@ export interface ICommandObject extends ICredentials {
 }
 
 export interface ISysInfoStats {
+  // Total server uptime
+  uptime: string;
   upd: string;
   rate: string;
   up: string;
@@ -112,6 +114,8 @@ export interface ISysInfoStats {
   vmu: string;
   tpm: string;
   pmu: string;
+  vmup: string;
+  pmup: string;
 }
 
 export interface ISysInfoPQM {
