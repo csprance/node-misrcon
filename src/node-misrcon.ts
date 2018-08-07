@@ -60,6 +60,7 @@ export const defaultStatus: StatusResponse = {
   version: ''
 };
 export const defaultStats = {
+  uptime: '',
   upd: '',
   rate: '',
   up: '',
@@ -67,7 +68,9 @@ export const defaultStats = {
   tvm: '',
   vmu: '',
   tpm: '',
-  pmu: ''
+  pmu: '',
+  vmup: '',
+  pmup: ''
 };
 export const defaultPQM = {
   pqm: {
