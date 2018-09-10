@@ -9,28 +9,38 @@
 ////////////////////////////////////////
 export const statusWPlayers = `-----------------------------------------
 Server Status:
-name: Official Miscreated - i3D.net - US77 #2008
+name: Official Miscreated - i3D.net - US75 #2006
 ip: Server50425
-version: 0.1.1.1892
+version: 0.1.1.1988
 level: Multiplayer/islands
 gamerules: Miscreated
-time: 00:21
-players: 2/36
+time: 07:52
+players: 14/50
+round time remaining: 0:00
+uptime: 09:24:19
+next restart in: 02:34:30
+weather: ClearSky
+weatherpattern: 1
  -----------------------------------------
 Connection Status:
-steam: 76561198231482780  name: nobledroid  entID:3538727  id: 31  ip: 192.168.1.1:64090  ping: 52  state: 3  profile: 0
-steam: 76561198280495438  name: Trollanati  entID:1834802  id: 46  ip: 192.168.1.1:64091  ping: 116  state: 3  profile: 0
+steam: 76561197984070357  name: Hero  entID:1833617  id: 43  ip: 192.168.1.1:64090  ping: 66  state: 3  profile: 0
+steam: 76561197966665198  name: BeOReN  entID:4191606  id: 88  ip: 192.168.1.1:64090  ping: 51  state: 3  profile: 0
 `;
 
 export const statusNoPlayers = `-----------------------------------------
 Server Status:
-name: Official Miscreated - i3D.net - US77 #2008
+name: Official Miscreated - i3D.net - US75 #2006
 ip: Server50425
-version: 0.1.1.1892
+version: 0.1.1.1988
 level: Multiplayer/islands
 gamerules: Miscreated
-time: 00:21
-players: 0/36
+time: 07:52
+players: 0/50
+round time remaining: 0:00
+uptime: 09:24:19
+next restart in: 02:34:30
+weather: ClearSky
+weatherpattern: 1
 `;
 
 export const statusWPlayersDev = `[CONSOLE] Executing console command 'status'
@@ -38,16 +48,20 @@ export const statusWPlayersDev = `[CONSOLE] Executing console command 'status'
 Server Status:
 name: Dev Server
 ip: Server10243
-version: 0.1.1.1892
+version: 0.1.1.1988
 level: Multiplayer/islands
 gamerules: Miscreated
-time: 14:00
+time: 07:52
 players: 2/50
-time remaining: 0:00
+round time remaining: 0:00
+uptime: 09:24:19
+next restart in: 02:34:30
+weather: ClearSky
+weatherpattern: 1
  -----------------------------------------
 Connection Status:
-steam: 76561198231482780  name: nobledroid  entID:3538727  id: 31  ip: 192.168.1.1:64090 ping: 52  state: 3  profile: 0
-steam: 76561198280495438  name: Trollanati  entID:1834802  id: 46  ip: 192.168.1.1:64091  ping: 116  state: 3  profile: 0
+steam: 76561197984070357  name: Hero  entID:1833617  id: 43  ip: 75.65.99.231:64090  ping: 66  state: 3  profile: 0
+steam: 76561197966665198  name: BeOReN  entID:4191606  id: 88  ip: 23.233.24.112:64090  ping: 51  state: 3  profile: 0
 `;
 
 export const statusNoPlayersDev = `[CONSOLE] Executing console command 'status'
@@ -55,12 +69,16 @@ export const statusNoPlayersDev = `[CONSOLE] Executing console command 'status'
 Server Status:
 name: Dev Server
 ip: Server10243
-version: 0.1.1.1892
+version: 0.1.1.1988
 level: Multiplayer/islands
 gamerules: Miscreated
-time: 14:00
+time: 07:52
 players: 0/50
-time remaining: 0:00
+round time remaining: 0:00
+uptime: 09:24:19
+next restart in: 02:34:30
+weather: ClearSky
+weatherpattern: 1
 `;
 
 export const statusWillError = `-----------------------------------------

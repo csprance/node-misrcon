@@ -39,6 +39,16 @@ export interface IServerStatus {
   gameRules: string; // Miscreated
   // The numer of players on the server
   players: string; // 0/50
+  // Remaining time left in round
+  roundTimeRemaining: string;
+  // How long the server has been up
+  upTime: string;
+  // When the next restart is
+  nextRestart: string;
+  // The weather pattern currently playing
+  weather: string;
+  // The weather pattern currently playing
+  weatherPattern: string;
 }
 
 export interface IPlayerStatus {

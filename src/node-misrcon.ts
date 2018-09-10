@@ -57,7 +57,12 @@ export const defaultStatus: StatusResponse = {
   players: '',
   playersArray: [defaultPlayer],
   time: '',
-  version: ''
+  version: '',
+  roundTimeRemaining: '',
+  upTime: '',
+  nextRestart: '',
+  weather: '',
+  weatherPattern: ''
 };
 export const defaultStats = {
   uptime: '',

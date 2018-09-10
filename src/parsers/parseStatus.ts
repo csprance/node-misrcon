@@ -17,7 +17,7 @@ export default function parseStatusResponseToJs(statusString: string): StatusRes
     throw new ParserError('Not a Status Response');
   }
   // what the obj will look like when we send it back
-  const player = {
+  const player: IPlayer = {
     entID: '',
     id: '',
     ip: '',
@@ -27,7 +27,7 @@ export default function parseStatusResponseToJs(statusString: string): StatusRes
     state: '',
     steam: ''
   };
-  const retObj = {
+  const retObj: StatusResponse = {
     gameRules: '',
     ip: '',
     level: '',
@@ -35,7 +35,12 @@ export default function parseStatusResponseToJs(statusString: string): StatusRes
     players: '',
     playersArray: [player],
     time: '',
-    version: ''
+    version: '',
+    roundTimeRemaining: '',
+    upTime: '',
+    nextRestart: '',
+    weather: '',
+    weatherPattern: ''
   };
   const serverStatusObject = getStatusObjectFromString(statusString);
   const playersString = getPlayersString(statusString);
@@ -47,21 +52,23 @@ function getStatusObjectFromString(str: string): IServerStatus {
   const serverStatusString = str
     .split('-----------------------------------------')[1]
     .replace('Server Status:\n', '');
-  const name = new RegExp('name: (.*)\n').exec(serverStatusString);
-  const ip = new RegExp('ip: (.*)\n').exec(serverStatusString);
-  const version = new RegExp('version: (.*)\n').exec(serverStatusString);
-  const level = new RegExp('level: (.*)\n').exec(serverStatusString);
-  const gameRules = new RegExp('gamerules: (.*)\n').exec(serverStatusString);
-  const players = new RegExp('players: (.*)\n').exec(serverStatusString);
-  const time = new RegExp('time: (.*)\n').exec(serverStatusString);
+
+  const returnValueOrNull = (regex: RegExpExecArray | null) => (regex !== null ? regex[1] : '');
+  const parseRegex = (pattern: string) =>
+    returnValueOrNull(new RegExp(pattern).exec(serverStatusString));
   return {
-    gameRules: gameRules !== null ? gameRules[1] : '',
-    ip: ip !== null ? ip[1] : '',
-    level: level !== null ? level[1] : '',
-    name: name !== null ? name[1] : '',
-    players: players !== null ? players[1] : '',
-    time: time !== null ? time[1] : '',
-    version: version !== null ? version[1] : ''
+    name: parseRegex('name: (.*)\n'),
+    ip: parseRegex('ip: (.*)\n'),
+    version: parseRegex('version: (.*)\n'),
+    level: parseRegex('level: (.*)\n'),
+    gameRules: parseRegex('gamerules: (.*)\n'),
+    players: parseRegex('players: (.*)\n'),
+    time: parseRegex('time: (.*)\n'),
+    roundTimeRemaining: parseRegex('round time remaining: (.*)\n'),
+    upTime: parseRegex('uptime: (.*)\n'),
+    nextRestart: parseRegex('next restart in: (.*)\n'),
+    weather: parseRegex('weather: (.*)\n'),
+    weatherPattern: parseRegex('weatherpattern: (.*)\n')
   };
 }
 
