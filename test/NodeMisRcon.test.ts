@@ -1,10 +1,10 @@
 /* global it, describe, before, after */
 import * as misrcon from '../src/node-misrcon';
 
-import { us75Credentials } from '../secrets';
+import { us75 } from '../secrets';
 
 describe('NodeMisRcon Class', () => {
-  const server = new misrcon.NodeMisrcon(us75Credentials);
+  const server = new misrcon.NodeMisrcon(us75);
 
   it('ban list', async () => {
     const banlist = await server.getBanList();

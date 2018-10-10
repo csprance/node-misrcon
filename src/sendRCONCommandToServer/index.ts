@@ -63,7 +63,19 @@ export default async function sendRCONCommandToServer(
     const md5Response = await _axios.post(serverUrl, challengeResponseRequest);
 
     // Check if the command is a legal command
-    if (utils.isIllegalCommand(md5Response)) return 'Illegal Command!';
+    if (utils.isIllegalCommand(md5Response)) {
+      // Try to just send the command
+      // Request: CommandString
+      const commandString = utils.createCommandString(options.command);
+      // Response: rconResult
+      const rconResult = await _axios.post(serverUrl, commandString);
+      if (utils.isIllegalCommand(rconResult.data)) {
+        return 'Illegal Command';
+      }
+      source.cancel('Operation canceled by the user.');
+      // parse and return
+      return utils.parseCommandResponse(rconResult.data);
+    }
 
     // Check if the password was incorrect
     if (Object.prototype.hasOwnProperty.call(md5Response, 'data')) {
