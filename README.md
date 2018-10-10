@@ -1,4 +1,4 @@
-# node-misrcon 
+# node-misrcon [![npm node-misrcon](https://img.shields.io/npm/v/node-misrcon.svg)](https://www.npmjs.com/package/node-misrcon)
 > package that contains functions to send rcon commands to miscreated game servers
 
 ## Features
