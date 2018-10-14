@@ -28,6 +28,23 @@ export { default as sendRCONCommandToServer } from './sendRCONCommandToServer';
 export { default as openConnection } from './openConnection';
 export { default as getAllServerData } from './getAllServerData';
 export { default as parseResponse } from './parsers';
+export {
+  SteamID,
+  IPlayer,
+  PlayersArray,
+  IServerStatus,
+  IPlayerStatus,
+  StatusResponse,
+  BanListResponse,
+  WhiteListResponse,
+  ParseResponse,
+  Parsed,
+  IAllData,
+  ICredentials,
+  ICommandObject,
+  ISysInfoStats,
+  ISysInfoPQM,
+} from './types';
 
 export class ParserError extends Error {
   constructor(m: string) {

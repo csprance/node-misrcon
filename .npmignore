@@ -1,0 +1,8 @@
+secrets.ts
+__mocks__
+coverage
+src
+yarn.lock
+CONTRIBUTING.md
+code-of-conduct.md
+.editorconfig
