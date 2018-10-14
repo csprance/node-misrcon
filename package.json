@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "node module that contains functions to send rcon commands to miscreated game servers",
   "keywords": [
     "miscreated",
@@ -8,7 +8,7 @@
     "misrcon"
   ],
   "main": "dist/lib/node-misrcon.js",
-  "typings": "dist/types/node-misrcon.d.ts",
+  "typings": "dist/lib/node-misrcon.d.ts",
   "files": [
     "dist"
   ],
