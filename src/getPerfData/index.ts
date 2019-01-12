@@ -12,7 +12,7 @@ import { defaultAllData } from '../node-misrcon';
 
 import { IAllData, ICredentials } from '../types';
 
-export default async function getAllServerData(options: ICredentials): Promise<IAllData> {
+export default async function getPerfData(options: ICredentials): Promise<IAllData> {
   try {
     // Get status response
     const serverStatusString = await sendRCONCommandToServer({

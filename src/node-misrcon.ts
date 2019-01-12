@@ -1,5 +1,6 @@
 import sendRCONCommandToServer from './sendRCONCommandToServer';
 import getAllServerData from './getAllServerData';
+import getPerfData from './getPerfData';
 import parseBanList from './parsers/parseBanList';
 import parseSysInfoStats from './parsers/parseSysInfoStats';
 import parseSysInfoPQM from './parsers/parseSysInfoPQM';
@@ -26,6 +27,7 @@ export { default as parseStatus } from './parsers/parseStatus';
 export { default as parseWhitelist } from './parsers/parseWhitelist';
 export { default as sendRCONCommandToServer } from './sendRCONCommandToServer';
 export { default as openConnection } from './openConnection';
+export { default as getPerfData } from './getPerfData';
 export { default as getAllServerData } from './getAllServerData';
 export { default as parseResponse } from './parsers';
 export {
@@ -43,7 +45,7 @@ export {
   ICredentials,
   ICommandObject,
   ISysInfoStats,
-  ISysInfoPQM,
+  ISysInfoPQM
 } from './types';
 
 export class ParserError extends Error {
@@ -141,6 +143,13 @@ export class NodeMisrcon {
   };
 
   /*
+  Get all the server data back as a single object IAllData
+   */
+  getPerfData = async (): Promise<IAllData> => {
+    return await getPerfData({ ...this.credentials });
+  };
+
+  /*
   Gets the Ban list as an array of steam ids
    */
   getBanList = async (): Promise<BanListResponse> => {
@@ -188,6 +197,7 @@ export default {
   NodeMisrcon,
   sendRCONCommandToServer,
   getAllServerData,
+  getPerfData,
   parseBanList,
   parseSysInfoStats,
   parseSysInfoPQM,

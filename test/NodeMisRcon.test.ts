@@ -36,6 +36,11 @@ describe('NodeMisRcon Class', () => {
     expect(allData.stats.dn).toBeDefined();
   });
 
+  it('getPerfData', async () => {
+    const allData = await server.getPerfData();
+    expect(allData.stats.dn).toBeDefined();
+  });
+
   it('send', async () => {
     const statusResponse = await server.send('status');
     expect(typeof statusResponse).toBe('string');
