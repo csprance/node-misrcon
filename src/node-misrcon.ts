@@ -26,7 +26,6 @@ export { default as parseBanList } from './parsers/parseBanList';
 export { default as parseStatus } from './parsers/parseStatus';
 export { default as parseWhitelist } from './parsers/parseWhitelist';
 export { default as sendRCONCommandToServer } from './sendRCONCommandToServer';
-export { default as openConnection } from './openConnection';
 export { default as getPerfData } from './getPerfData';
 export { default as getAllServerData } from './getAllServerData';
 export { default as parseResponse } from './parsers';
