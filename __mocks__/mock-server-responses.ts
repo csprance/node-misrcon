@@ -23,8 +23,8 @@ weather: ClearSky
 weatherpattern: 1
  -----------------------------------------
 Connection Status:
-steam: 76561197984070357  name: Hero  entID:1833617  id: 43  ip: 192.168.1.1:64090  ping: 66  state: 3  profile: 0
-steam: 76561197966665198  name: BeOReN  entID:4191606  id: 88  ip: 192.168.1.1:64090  ping: 51  state: 3  profile: 0
+steam: '76561197984070357'  name: 'Hero'  entID:'1833617'  id: '43'  ip: '192.168.1.1:64090'  ping: '66'  state: '3'  profile: '0'
+steam: '76561197966665198'  name: 'BeOReN'  entID:'4191606'  id: '88'  ip: '192.168.1.1:64090'  ping: '51'  state: '3'  profile: '0'
 `;
 
 export const statusNoPlayers = `-----------------------------------------
@@ -60,8 +60,8 @@ weather: ClearSky
 weatherpattern: 1
  -----------------------------------------
 Connection Status:
-steam: 76561197984070357  name: Hero  entID:1833617  id: 43  ip: 75.65.99.231:64090  ping: 66  state: 3  profile: 0
-steam: 76561197966665198  name: BeOReN  entID:4191606  id: 88  ip: 23.233.24.112:64090  ping: 51  state: 3  profile: 0
+steam: '76561197984070357'  name: 'Hero'  entID:'1833617'  id: '43'  ip: '192.168.1.1:64090'  ping: '66'  state: '3'  profile: '0'
+steam: '76561197966665198'  name: 'BeOReN'  entID:'4191606'  id: '88'  ip: '192.168.1.1:64090'  ping: '51'  state: '3'  profile: '0'
 `;
 
 export const statusNoPlayersDev = `[CONSOLE] Executing console command 'status'
@@ -91,8 +91,8 @@ gamerules: Miscreated
 time: 00:21
  -----------------------------------------
 Connection Status:
-steam: 76561198231482780  name: nobledroid  entID:3538727  id: 31  ip: 192.168.1.1:64090  ping: 52  state: 3  profile: 0
- 76561198280495438  name: Trollanati  entID:1834802  id: 46  ip: 192.168.1.1:64091  ping: 116  state: 3  profile: 0
+steam: '76561198231482780'  name: 'nobledroid'  entID:'3538727'  id: '31'  ip: '192.168.1.1:64090'  ping: '52'  state: '3'  profile: '0'
+ '76561198280495438'  name: 'Trollanati'  entID:'1834802'  id: '46'  ip: '192.168.1.1:64091'  ping: '116'  state: '3'  profile: '0'
 `;
 
 ////////////////////////////////////////

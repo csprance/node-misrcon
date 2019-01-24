@@ -79,6 +79,15 @@ function getPlayersString(str: string): string {
   else return '';
 }
 
+function stripGarbageCharacters(regexResults: RegExpExecArray | null) {
+  if (regexResults) {
+    const results = regexResults[1];
+    const trimmed = results !== null ? results.trim() : '';
+    return trimmed.replace(/'/g, '');
+  }
+  return '';
+}
+
 function splitPlayerStringRowsIntoArray(str: string): PlayersArray {
   const stringArray = str.split('\n');
   const playersArray: IPlayer[] = [];
@@ -93,23 +102,23 @@ function splitPlayerStringRowsIntoArray(str: string): PlayersArray {
   const profileRE = new RegExp('profile: (.*)');
 
   stringArray.forEach((player: string) => {
-    const steam = steamIdRE.exec(player);
-    const name = nameRE.exec(player);
-    const entID = entIDRE.exec(player);
-    const id = idRE.exec(player);
-    const ip = ipRE.exec(player);
-    const ping = pingRE.exec(player);
-    const state = stateRE.exec(player);
-    const profile = profileRE.exec(player);
+    const steam = stripGarbageCharacters(steamIdRE.exec(player));
+    const name = stripGarbageCharacters(nameRE.exec(player));
+    const entID = stripGarbageCharacters(entIDRE.exec(player));
+    const id = stripGarbageCharacters(idRE.exec(player));
+    const ip = stripGarbageCharacters(ipRE.exec(player));
+    const ping = stripGarbageCharacters(pingRE.exec(player));
+    const state = stripGarbageCharacters(stateRE.exec(player));
+    const profile = stripGarbageCharacters(profileRE.exec(player));
     playersArray.push({
-      entID: entID !== null ? entID[1].trim() : '',
-      id: id !== null ? id[1].trim() : '',
-      ip: ip !== null ? ip[1].trim() : '',
-      name: name !== null ? name[1].trim() : '',
-      ping: ping !== null ? ping[1].trim() : '',
-      profile: profile !== null ? profile[1].trim() : '',
-      state: state !== null ? state[1].trim() : '',
-      steam: steam !== null ? steam[1].trim() : ''
+      entID,
+      id,
+      ip,
+      name,
+      ping,
+      profile,
+      state,
+      steam
     });
   });
   return playersArray.filter(player => player.steam !== '');
