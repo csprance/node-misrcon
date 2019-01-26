@@ -18,27 +18,27 @@ export default function parseStatusResponseToJs(statusString: string): StatusRes
   }
   // what the obj will look like when we send it back
   const player: IPlayer = {
-    entID: '',
-    id: '',
+    entID: 0,
+    id: 0,
     ip: '',
     name: '',
-    ping: '',
-    profile: '',
-    state: '',
-    steam: ''
+    ping: 0,
+    profile: 0,
+    state: 0,
+    steam: 0
   };
   const retObj: StatusResponse = {
     gameRules: '',
     ip: '',
     level: '',
     name: '',
+    nextRestart: '',
     players: '',
     playersArray: [player],
-    time: '',
-    version: '',
     roundTimeRemaining: '',
+    time: '',
     upTime: '',
-    nextRestart: '',
+    version: '',
     weather: '',
     weatherPattern: ''
   };
@@ -57,16 +57,16 @@ function getStatusObjectFromString(str: string): IServerStatus {
   const parseRegex = (pattern: string) =>
     returnValueOrNull(new RegExp(pattern).exec(serverStatusString));
   return {
-    name: parseRegex('name: (.*)\n'),
-    ip: parseRegex('ip: (.*)\n'),
-    version: parseRegex('version: (.*)\n'),
-    level: parseRegex('level: (.*)\n'),
     gameRules: parseRegex('gamerules: (.*)\n'),
-    players: parseRegex('players: (.*)\n'),
-    time: parseRegex('time: (.*)\n'),
-    roundTimeRemaining: parseRegex('round time remaining: (.*)\n'),
-    upTime: parseRegex('uptime: (.*)\n'),
+    ip: parseRegex('ip: (.*)\n'),
+    level: parseRegex('level: (.*)\n'),
+    name: parseRegex('name: (.*)\n'),
     nextRestart: parseRegex('next restart in: (.*)\n'),
+    players: parseRegex('players: (.*)\n'),
+    roundTimeRemaining: parseRegex('round time remaining: (.*)\n'),
+    time: parseRegex('time: (.*)\n'),
+    upTime: parseRegex('uptime: (.*)\n'),
+    version: parseRegex('version: (.*)\n'),
     weather: parseRegex('weather: (.*)\n'),
     weatherPattern: parseRegex('weatherpattern: (.*)\n')
   };
@@ -75,8 +75,8 @@ function getStatusObjectFromString(str: string): IServerStatus {
 function getPlayersString(str: string): string {
   const pString = /Server Status:[\s\S]*.*/g;
   const newStr = pString.exec(String(str));
-  if (newStr !== null) return newStr[0].replace('Server Status:\n', '');
-  else return '';
+
+  return newStr ? newStr[0].replace('Server Status:\n', '') : '';
 }
 
 function stripGarbageCharacters(regexResults: RegExpExecArray | null) {
@@ -102,14 +102,14 @@ function splitPlayerStringRowsIntoArray(str: string): PlayersArray {
   const profileRE = new RegExp('profile: (.*)');
 
   stringArray.forEach((player: string) => {
-    const steam = stripGarbageCharacters(steamIdRE.exec(player));
+    const steam = Number(stripGarbageCharacters(steamIdRE.exec(player)));
     const name = stripGarbageCharacters(nameRE.exec(player));
-    const entID = stripGarbageCharacters(entIDRE.exec(player));
-    const id = stripGarbageCharacters(idRE.exec(player));
+    const entID = Number(stripGarbageCharacters(entIDRE.exec(player)));
+    const id = Number(stripGarbageCharacters(idRE.exec(player)));
     const ip = stripGarbageCharacters(ipRE.exec(player));
-    const ping = stripGarbageCharacters(pingRE.exec(player));
-    const state = stripGarbageCharacters(stateRE.exec(player));
-    const profile = stripGarbageCharacters(profileRE.exec(player));
+    const ping = Number(stripGarbageCharacters(pingRE.exec(player)));
+    const state = Number(stripGarbageCharacters(stateRE.exec(player)));
+    const profile = Number(stripGarbageCharacters(profileRE.exec(player)));
     playersArray.push({
       entID,
       id,
@@ -121,5 +121,5 @@ function splitPlayerStringRowsIntoArray(str: string): PlayersArray {
       steam
     });
   });
-  return playersArray.filter(player => player.steam !== '');
+  return playersArray.filter(player => player.steam);
 }

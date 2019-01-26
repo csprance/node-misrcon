@@ -3,10 +3,10 @@
  * Created by chris on 4/30/2017.
  * Description:
  */
-import sendRCONCommandToServer from '../sendRCONCommandToServer';
 import parseStatus from '../parsers/parseStatus';
-import parseSysInfoStats from '../parsers/parseSysInfoStats';
 import parseSysInfoPQM from '../parsers/parseSysInfoPQM';
+import parseSysInfoStats from '../parsers/parseSysInfoStats';
+import sendRCONCommandToServer from '../sendRCONCommandToServer';
 
 import { defaultAllData } from '../node-misrcon';
 

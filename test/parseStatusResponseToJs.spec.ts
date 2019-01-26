@@ -18,14 +18,14 @@ describe('parseStatus', () => {
     expect(status.weather).toEqual('ClearSky');
     expect(status.weatherPattern).toEqual('1');
     expect(status.playersArray.length).toEqual(2);
-    expect(status.playersArray[0].steam).toEqual('76561197984070357');
+    expect(status.playersArray[0].steam).toEqual(76561197984070357);
     expect(status.playersArray[0].name).toEqual('Hero');
-    expect(status.playersArray[0].entID).toEqual('1833617');
-    expect(status.playersArray[0].id).toEqual('43');
+    expect(status.playersArray[0].entID).toEqual(1833617);
+    expect(status.playersArray[0].id).toEqual(43);
     expect(status.playersArray[0].ip).toEqual('192.168.1.1:64090');
-    expect(status.playersArray[0].ping).toEqual('66');
-    expect(status.playersArray[0].state).toEqual('3');
-    expect(status.playersArray[0].profile).toEqual('0');
+    expect(status.playersArray[0].ping).toEqual(66);
+    expect(status.playersArray[0].state).toEqual(3);
+    expect(status.playersArray[0].profile).toEqual(0);
   });
 
   it('status with no players', () => {

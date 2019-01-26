@@ -7,6 +7,7 @@ describe('parseSysInfoStats', () => {
     const sysInfo = misrcon.parseSysInfoStats(mock.sysInfoStats);
     expect(sysInfo.upd).toBe('9.2ms (7.82..10.89)');
   });
+
   it('sysinfo stats dev', () => {
     const sysInfo = misrcon.parseSysInfoStats(mock.sysInfoStatsDev);
     expect(sysInfo.upd).toBe('2.5ms (2.37..3.28)');

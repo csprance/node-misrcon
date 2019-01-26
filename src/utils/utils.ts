@@ -34,7 +34,9 @@ export function getUpTimeFromChallengeResponse(str: string): string {
   // get the uptime by parsing the xml
   let upTime = '';
   parseString(str, (err, result) => {
-    if (!err) upTime = result.methodResponse.params[0].param[0].value[0].string[0];
+    if (!err) {
+      upTime = result.methodResponse.params[0].param[0].value[0].string[0];
+    }
   });
   return upTime;
 }
@@ -45,7 +47,9 @@ export function parseCommandResponse(str: string): string {
   let res = '';
   parseString(str, (err, result) => {
     // parse the response
-    if (!err) res = result.methodResponse.params[0].param[0].value[0].string[0];
+    if (!err) {
+      res = result.methodResponse.params[0].param[0].value[0].string[0];
+    }
   });
   return res;
 }
@@ -61,12 +65,14 @@ export function parseAuthResponse(data: string): string {
   // TODO: Probably could look into this a little further
   let authResults = '';
   parseString(data, (err, result) => {
-    if (!err) authResults = result.methodResponse.params[0].param[0].value[0].string[0];
+    if (!err) {
+      authResults = result.methodResponse.params[0].param[0].value[0].string[0];
+    }
   });
   return authResults;
 }
 
-export function isIllegalCommand(res: AxiosResponse): Boolean {
+export function isIllegalCommand(res: AxiosResponse): boolean {
   // server response looks like
   // <methodResponse><params><param><value>
   // <string> [Whitelist] Invalid command: challenge</string></value></param></params>
@@ -117,12 +123,7 @@ const preserveCamelCase = (input: string) => {
 };
 
 export const camelCase = (input: string, options?: any) => {
-  options = Object.assign(
-    {
-      pascalCase: false
-    },
-    options
-  );
+  options = { ...options, pascalCase: false };
 
   const postProcess = (x: any) => (options.pascalCase ? x.charAt(0).toUpperCase() + x.slice(1) : x);
 

@@ -6,17 +6,34 @@ import { ParserError } from '../node-misrcon';
 import { ISysInfoPQM } from '../types';
 import { camelCase } from '../utils/utils';
 
-const splitToKeys = (val: string[]) =>
+const defaultSysInfoPQM: ISysInfoPQM = {
+  pcm: {
+    queueSize: ''
+  },
+  pqm: {
+    invokes: {
+      avgResponse: '',
+      queueSize: ''
+    },
+    requests: {
+      avgResponse: '',
+      queueSize: ''
+    }
+  }
+};
+
+const splitToKeys = (val: string[]): {} =>
   val.reduce((acc, curVal) => {
     const splitVal = curVal.split(':');
     return {
       ...acc,
       [camelCase(splitVal[0].trim())]: splitVal[1].trim()
     };
-  }, {});
-
+  }, defaultSysInfoPQM);
 export default (response: string): ISysInfoPQM => {
-  if (!response.includes('PQM: Requests -')) throw new ParserError('Not a SysInfo PQM response');
+  if (!response.includes('PQM: Requests -')) {
+    throw new ParserError('Not a SysInfo PQM response');
+  }
   try {
     const [pqm, pcm] = response
       .replace("[CONSOLE] Executing console command 'sysinfo pqm'", '')
@@ -26,23 +43,28 @@ export default (response: string): ISysInfoPQM => {
         .replace('PQM: Requests - ', '')
         .replace(' Invokes - ', '')
         .split(',')
-        .filter(item => item.trim().length !== 0)
+        .filter(i => i.trim().length !== 0)
     );
-    return {
-      pqm: {
-        requests: {
-          ...splitToKeys(pqmRequests)
-        },
-        invokes: {
-          ...splitToKeys(pqmInvokes)
-        }
-      },
+
+    const value: ISysInfoPQM = {
+      ...defaultSysInfoPQM,
+      // @ts-ignore
       pcm: {
         [camelCase(pcm.split(':')[0])]: pcm.split(':')[1].trim()
+      },
+      pqm: {
+        // @ts-ignore
+        invokes: {
+          ...splitToKeys(pqmInvokes)
+        },
+        // @ts-ignore
+        requests: {
+          ...splitToKeys(pqmRequests)
+        }
       }
-    } as ISysInfoPQM;
+    };
+    return value;
   } catch (e) {
-    console.log(e);
     throw new ParserError('Not a SysInfo PQM response');
   }
 };

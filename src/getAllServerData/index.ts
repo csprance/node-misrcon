@@ -3,12 +3,12 @@
  * Created by chris on 4/30/2017.
  * Description:
  */
-import sendRCONCommandToServer from '../sendRCONCommandToServer';
 import parseBanList from '../parsers/parseBanList';
 import parseStatus from '../parsers/parseStatus';
-import parseWhitelist from '../parsers/parseWhitelist';
-import parseSysInfoStats from '../parsers/parseSysInfoStats';
 import parseSysInfoPQM from '../parsers/parseSysInfoPQM';
+import parseSysInfoStats from '../parsers/parseSysInfoStats';
+import parseWhitelist from '../parsers/parseWhitelist';
+import sendRCONCommandToServer from '../sendRCONCommandToServer';
 
 import { defaultAllData } from '../node-misrcon';
 

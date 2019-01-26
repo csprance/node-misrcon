@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "node module that contains functions to send rcon commands to miscreated game servers",
   "keywords": [
     "miscreated",
@@ -22,74 +22,29 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "quick-build": "tsc --module commonjs",
-    "prebuild": "rimraf dist && npm run test:prod",
     "build": "tsc --module commonjs && typedoc --out docs --target es6 --theme minimal --mode file src",
-    "start": "rollup -c rollup.config.ts -w",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "cleanup": "rimraf dist && rimraf coverage && rimraf docs",
+    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "prebuild": "rimraf dist && npm run test:prod",
+    "quick-build": "tsc --module commonjs",
+    "test": "jest -i",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
-    "precommit": "lint-staged",
-    "prepush": "npm run test:prod && npm run build",
-    "commitmsg": "validate-commit-msg"
-  },
-  "lint-staged": {
-    "{src,test}/**/*.ts": [
-      "prettier --write --no-semi --single-quote",
-      "git add"
-    ]
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/test/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 40,
-        "functions": 40,
-        "lines": 40,
-        "statements": 40
-      }
-    },
-    "collectCoverage": true
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@types/camelcase": "^4.1.0",
-    "@types/jest": "^22.2.2",
-    "@types/md5": "^2.1.32",
-    "@types/node": "^9.6.2",
-    "@types/xml2js": "^0.4.2",
-    "colors": "^1.1.2",
-    "coveralls": "^3.0.0",
-    "cross-env": "^5.0.1",
-    "jest": "^22.0.2",
-    "lint-staged": "^7.0.0",
-    "lodash.camelcase": "^4.3.0",
-    "prettier": "^1.4.4",
-    "prompt": "^1.0.0",
-    "replace-in-file": "^3.0.0-beta.2",
-    "rimraf": "^2.6.1",
-    "semantic-release": "^15.1.5",
-    "ts-jest": "^22.0.0",
-    "ts-node": "^5.0.1",
-    "tslint": "^5.8.0",
-    "tslint-config-prettier": "^1.1.0",
-    "tslint-config-standard": "^7.0.0",
-    "typedoc": "^0.11.0",
-    "typescript": "^2.6.2",
-    "validate-commit-msg": "^2.12.2"
+    "@types/jest": "^23.3.13",
+    "@types/md5": "^2.1.33",
+    "@types/node": "^10.12.18",
+    "@types/xml2js": "^0.4.3",
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^8.0.1",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.2.4"
   },
   "dependencies": {
     "axios": "^0.18.0",

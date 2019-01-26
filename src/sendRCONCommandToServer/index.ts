@@ -46,13 +46,13 @@ export default async function sendRCONCommandToServer(
       timeout
     };
 
-    const _axios = axios.create(axiosConfig);
+    const axiosWithConfig = axios.create(axiosConfig);
 
     // it's business time girl!!
     /** --- 1 --- */
     // Request: challenge
     const challengeString = utils.createChallengeString();
-    const challengResult = await _axios.post(serverUrl, challengeString);
+    const challengResult = await axiosWithConfig.post(serverUrl, challengeString);
 
     // Response: uptime
     const upTime = utils.getUpTimeFromChallengeResponse(challengResult.data);
@@ -60,7 +60,7 @@ export default async function sendRCONCommandToServer(
 
     /** --- 2 --- */
     // Request: md5(uptime:password)
-    const md5Response = await _axios.post(serverUrl, challengeResponseRequest);
+    const md5Response = await axiosWithConfig.post(serverUrl, challengeResponseRequest);
 
     // Check if the command is a legal command
     if (utils.isIllegalCommand(md5Response)) {
@@ -68,7 +68,7 @@ export default async function sendRCONCommandToServer(
       // Request: CommandString
       const commandString = utils.createCommandString(options.command);
       // Response: rconResult
-      const rconResult = await _axios.post(serverUrl, commandString);
+      const rconResult = await axiosWithConfig.post(serverUrl, commandString);
       if (utils.isIllegalCommand(rconResult.data)) {
         return 'Illegal Command';
       }
@@ -88,7 +88,7 @@ export default async function sendRCONCommandToServer(
       // Request: CommandString
       const commandString = utils.createCommandString(options.command);
       // Response: rconResult
-      const rconResult = await _axios.post(serverUrl, commandString);
+      const rconResult = await axiosWithConfig.post(serverUrl, commandString);
       source.cancel('Operation canceled by the user.');
       // parse and return
       return utils.parseCommandResponse(rconResult.data);

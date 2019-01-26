@@ -35,6 +35,10 @@ const stats = await server.getStats();
 const commandResponse = await server.send('status');
 
 ```
+## Changes from v1 -> 2
+* `port` in `ICredentials` now takes a number instead of a string
+* Many values now return numbers instead of strings if it makes sense
+
 ## Changes from v0 > 1.0
 * New NodeMisrcon api object added to make requests a lot easier and only require a single authentication object and make parsing and sending requests easier
 
