@@ -16,6 +16,5 @@ export default function parseBanListResponseToJs(res: string): BanListResponse {
     .replace('Banned players : ', '')
     .split(' ')
     .filter(x => x !== 'SteamID:')
-    .filter(x => x !== '')
-    .map(steam => Number(steam));
+    .filter(x => x !== '');
 }

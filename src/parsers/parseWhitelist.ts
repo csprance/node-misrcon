@@ -17,6 +17,5 @@ export default function parseWhitelistResponseToJs(res: string): WhiteListRespon
     .split(' ')
     .filter(x => x !== 'SteamID:')
     .filter(x => x !== '0')
-    .filter(x => x !== '')
-    .map(steam => Number(steam));
+    .filter(x => x !== '');
 }

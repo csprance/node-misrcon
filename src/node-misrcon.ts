@@ -57,7 +57,7 @@ export const defaultPlayer: IPlayer = {
   ping: 0,
   profile: 0,
   state: 0,
-  steam: 0
+  steam: ''
 };
 
 export const defaultStatus: StatusResponse = {
