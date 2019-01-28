@@ -25,7 +25,7 @@ export default function parseStatusResponseToJs(statusString: string): StatusRes
     ping: 0,
     profile: 0,
     state: 0,
-    steam: 0
+    steam: ''
   };
   const retObj: StatusResponse = {
     gameRules: '',
@@ -102,7 +102,7 @@ function splitPlayerStringRowsIntoArray(str: string): PlayersArray {
   const profileRE = new RegExp('profile: (.*)');
 
   stringArray.forEach((player: string) => {
-    const steam = Number(stripGarbageCharacters(steamIdRE.exec(player)));
+    const steam = stripGarbageCharacters(steamIdRE.exec(player));
     const name = stripGarbageCharacters(nameRE.exec(player));
     const entID = Number(stripGarbageCharacters(entIDRE.exec(player)));
     const id = Number(stripGarbageCharacters(idRE.exec(player)));

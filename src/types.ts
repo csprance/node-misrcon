@@ -1,5 +1,5 @@
 // 64 bit steam id
-export type SteamID = number; // 76561198034520139
+export type SteamID = string; // 76561198034520139
 
 // steam: 76561198034520139  name: chrissprance  entID:1769296  id: 5
 // ip: 174.107.93.24:64090  ping: 276  state: 3  profile: 0
