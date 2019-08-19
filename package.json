@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "node module that contains functions to send rcon commands to miscreated game servers",
   "keywords": [
     "miscreated",
@@ -32,23 +32,23 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/camelcase": "^4.1.0",
-    "@types/jest": "^23.3.13",
+    "@types/camelcase": "^5.2.0",
+    "@types/jest": "^24.0.17",
     "@types/md5": "^2.1.33",
-    "@types/node": "^10.12.18",
-    "@types/xml2js": "^0.4.3",
-    "jest": "^23.6.0",
-    "rimraf": "^2.6.3",
-    "ts-jest": "^23.10.5",
-    "ts-node": "^8.0.1",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.17.0",
-    "typedoc": "^0.14.2",
-    "typescript": "^3.2.4"
+    "@types/node": "^12.7.2",
+    "@types/xml2js": "^0.4.4",
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "camelcase": "^5.0.0",
+    "axios": "^0.19.0",
+    "camelcase": "^5.3.1",
     "md5": "^2.2.1",
     "xml2js": "^0.4.19"
   }
