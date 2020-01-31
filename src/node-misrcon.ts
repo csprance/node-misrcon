@@ -1,7 +1,9 @@
 import getAllServerData from './getAllServerData';
+import getEntityData from './getEntityData';
 import getPerfData from './getPerfData';
 import parseResponse from './parsers';
 import parseBanList from './parsers/parseBanList';
+import parseEntityDump from './parsers/parseEntityDump';
 import parseStatus from './parsers/parseStatus';
 import parseSysInfoPQM from './parsers/parseSysInfoPQM';
 import parseSysInfoStats from './parsers/parseSysInfoStats';
@@ -10,8 +12,10 @@ import sendRCONCommandToServer from './sendRCONCommandToServer';
 
 import {
   BanListResponse,
+  ENTITY_ENUM,
   IAllData,
   ICredentials,
+  IEntity,
   IPlayer,
   ISysInfoPQM,
   ISysInfoStats,
@@ -20,6 +24,7 @@ import {
   WhiteListResponse
 } from './types';
 
+export { default as parseEntityDump } from './parsers/parseEntityDump';
 export { default as ParserError } from './parsers/ParserError';
 export { default as parseSysInfoStats } from './parsers/parseSysInfoStats';
 export { default as parseSysInfoPQM } from './parsers/parseSysInfoPQM';
@@ -188,6 +193,10 @@ export class NodeMisrcon {
     const status = await this.getStatus();
     return status.playersArray;
   };
+
+  public getEntityDump = async (entity: ENTITY_ENUM): Promise<IEntity[]> => {
+    return getEntityData({ ...this.credentials }, entity);
+  };
 }
 
 export default {
@@ -195,6 +204,7 @@ export default {
   getAllServerData,
   getPerfData,
   parseBanList,
+  parseEntityDump,
   parseResponse,
   parseStatus,
   parseSysInfoPQM,

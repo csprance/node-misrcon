@@ -100,6 +100,7 @@ export interface IAllData {
   stats: ISysInfoStats;
   pqm: ISysInfoPQM;
 }
+
 export interface ICredentials {
   // The ip for the Server you're sending the request to
   ip: string;
@@ -108,6 +109,7 @@ export interface ICredentials {
   // the admin password for the server (RCON Password)
   password: string;
 }
+
 export interface ICommandObject extends ICredentials {
   // the actual RCON command string you want to send
   command: string;
@@ -143,3 +145,13 @@ export interface ISysInfoPQM {
     queueSize: string;
   };
 }
+
+export interface IEntity {
+  active: boolean;
+  id: number;
+  pos: [number, number, number];
+  salt: number;
+  type: ENTITY_ENUM;
+}
+
+export type ENTITY_ENUM = 'tractor' | 'quadbike';

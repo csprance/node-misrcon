@@ -14,7 +14,7 @@ describe('sendRCONCommandToServer', () => {
     expect.assertions(1);
     const results = await misrcon.sendRCONCommandToServer(us77);
     expect(misrcon.parseStatus(results).name).toEqual(
-      'Official Miscreated - i3D.net - US77 #2008'
+      'Official Miscreated - i3D.net - US East #77 - Islands'
     );
   });
 

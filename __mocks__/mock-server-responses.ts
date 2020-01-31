@@ -163,6 +163,16 @@ export const sysInfoPQM = `PQM: Requests - queue size: 0, avg response: 13719.43
 export const sysInfoPQMDev = `[CONSOLE] Executing console command 'sysinfo pqm'
 PQM: Requests - queue size: 0, avg response: 0.0405; Invokes - queue size: 0, avg response: 0.0415, PCM: queue size: 0`;
 
+export const entityDumpDev = `[CONSOLE] Executing console command 'es_dump_entities quadbike'
+--------------------------------------------------------------------------------
+ 1583:    0 Salt:2  quadbike[$9quadbike$1]                      [$3Active$1]    pos: (1961.46 3729.01 38.47) 132655 
+64595:    0 Salt:0  quadbike[$9quadbike$1]                      [$3Active$1]    pos: (398.37 2505.45 39.73) 64595 
+64647:    0 Salt:0  quadbike[$9quadbike$1]                      [$3Active$1]    pos: (3030.39 2165.95 31.94) 64647 
+65483:    0 Salt:1  quadbike[$9quadbike$1]                      [$3Active$1]    pos: (1660.80 2242.92 40.62) 131019 
+--------------------------------------------------------------------------------
+ 4 entities (4 active)
+--------------------------------------------------------------------------------`;
+
 export const helpString = `# Miscreated Servers
 > RCON commands and server configuration help
 

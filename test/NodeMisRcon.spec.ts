@@ -13,7 +13,7 @@ describe('NodeMisRcon Class', () => {
 
   it('status', async () => {
     const status = await server.getStatus();
-    expect(status.name).toBe('Official Miscreated - i3D.net - US75 #2006');
+    expect(status.name).toBe('Official Miscreated - i3D.net - US East #75 - Islands');
   });
 
   it('whitelist', async () => {
