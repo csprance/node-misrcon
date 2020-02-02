@@ -1,3 +1,4 @@
+import { ParserError } from '../node-misrcon';
 import { ENTITY_ENUM, IEntity } from '../types';
 
 /*
@@ -11,6 +12,9 @@ const parseEntityDump = (entityDumpString: string): IEntity[] => {
   splitEntString.pop();
   splitEntString.pop();
   splitEntString.pop();
+  if (splitEntString.length === 0) {
+    throw new ParserError('Not an Entity Dump');
+  }
   return splitEntString.map(line => {
     const data = line
       .split(' ')
