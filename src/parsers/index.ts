@@ -52,6 +52,15 @@ export default function parseResponse(response: string): ParseResponse {
     }
   }
 
+  // Try to parse the entity dump
+  try {
+    return { data: misrcon.parseEntityDump(response), type: 'entity dump' };
+  } catch (e) {
+    if (!(e instanceof misrcon.ParserError)) {
+      throw e;
+    }
+  }
+
   // all else has failed this can not be parsed
   return false;
 }

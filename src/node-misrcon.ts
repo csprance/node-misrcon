@@ -194,6 +194,9 @@ export class NodeMisrcon {
     return status.playersArray;
   };
 
+  /*
+  This is a dev server only command for now
+   */
   public getEntityDump = async (entity: ENTITY_ENUM): Promise<IEntity[]> => {
     return getEntityData({ ...this.credentials }, entity);
   };

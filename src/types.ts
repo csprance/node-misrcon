@@ -83,6 +83,10 @@ export type ParseResponse =
       data: ISysInfoStats;
       type: 'sysinfo stats';
     }
+  | {
+      data: IEntity[];
+      type: 'entity dump';
+    }
   | false;
 
 export type Parsed =
