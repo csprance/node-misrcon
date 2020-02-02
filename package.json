@@ -1,6 +1,6 @@
 {
   "name": "node-misrcon",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "node module that contains functions to send rcon commands to miscreated game servers",
   "keywords": [
     "miscreated",

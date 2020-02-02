@@ -173,6 +173,13 @@ export const entityDumpDev = `[CONSOLE] Executing console command 'es_dump_entit
  4 entities (4 active)
 --------------------------------------------------------------------------------`;
 
+export const entityDumpDev2 = `[CONSOLE] Executing console command 'es_dump_entities tractor'
+--------------------------------------------------------------------------------
+63702:    0 Salt:1  tractor[$9tractor$1]                        [$3Active$1]    pos: (1991.41 2546.68 51.09) 129238 
+--------------------------------------------------------------------------------
+ 1 entities (1 active)
+--------------------------------------------------------------------------------`;
+
 export const helpString = `# Miscreated Servers
 > RCON commands and server configuration help
 

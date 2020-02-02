@@ -15,7 +15,7 @@ const parseEntityDump = (entityDumpString: string): IEntity[] => {
   if (splitEntString.length === 0) {
     throw new ParserError('Not an Entity Dump');
   }
-  return splitEntString.map(line => {
+  return splitEntString.filter(i => !i.startsWith('-')).map(line => {
     const data = line
       .split(' ')
       .filter(i => i)
